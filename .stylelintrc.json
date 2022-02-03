@@ -4,9 +4,13 @@
     "stylelint-order-config-standard"
   ],
   "plugins": [
+    "stylelint-scss",
     "stylelint-order"
   ],
+  "customSyntax": "postcss-scss",
   "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
     "indentation": "tab",
     "color-hex-case": "upper"
   }
