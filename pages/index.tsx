@@ -1,12 +1,11 @@
-import {Button, HTag} from "../components";
-import cn from "classnames";
+import { Button, Heading } from "../components";
 
 export default function Home() {
   return (
     <>
-      <HTag tag="h1">Заголовок</HTag>
-      <Button>Кнопка</Button>
-      <Button type="second">Нажать</Button>
+      <Heading tag="h1">Заголовок</Heading>
+      <Button arrow="right">Кнопка</Button>
+      <Button appearance="second" arrow="down">Нажать</Button>
     </>
   );
 }
