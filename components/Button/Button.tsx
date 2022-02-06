@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react';
+import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import styles from './Button.module.scss';
 import cn from "classnames";
 import ArrowIcon from "./arrow.svg";
@@ -19,7 +19,7 @@ export const Button = ({ appearance = 'primary', arrow = 'none', children, class
       {...restProps}
     >
       {children}
-      <ArrowIcon className={cn(styles.arrow__button, {[styles.button__arrow_down]: arrow === 'down'})} />
+      <ArrowIcon className={cn(styles.button__arrow, {[styles.button__arrow_down]: arrow === 'down'})} />
     </button>
   );
 };

@@ -18,5 +18,3 @@ export const Paragraph = ({size = 'm', className, children, ...restProps}: IPara
     {children}
   </p>;
 };
-
-export default Paragraph;

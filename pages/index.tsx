@@ -1,6 +1,9 @@
-import { Button, Heading, Paragraph } from "../components";
+import { Button, Heading, Paragraph, Rating, Tag } from "../components";
+import { useState } from "react";
 
 export default function Home() {
+  const [rating, setRaring] = useState<number>(1);
+
   return (
     <>
       <Heading tag="h1">Заголовок</Heading>
@@ -9,6 +12,14 @@ export default function Home() {
       <Paragraph size="s">Параграф s</Paragraph>
       <Paragraph>Параграф m</Paragraph>
       <Paragraph size="l">Параграф l</Paragraph>
+      <Tag tagColor="ghost">ghost</Tag>
+      <Tag size="m" tagColor="red">red</Tag>
+      <Tag tagColor="gray">gray</Tag>
+      <Tag size="m" tagColor="green">green</Tag>
+      <Tag tagColor="brand">brand</Tag>
+      <div>
+        <Rating rating={rating} setRating={setRaring} isEditable />
+      </div>
     </>
   );
 }
