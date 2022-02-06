@@ -1,4 +1,4 @@
-import { Button, Heading } from "../components";
+import { Button, Heading, Paragraph } from "../components";
 
 export default function Home() {
   return (
@@ -6,6 +6,9 @@ export default function Home() {
       <Heading tag="h1">Заголовок</Heading>
       <Button arrow="right">Кнопка</Button>
       <Button appearance="second" arrow="down">Нажать</Button>
+      <Paragraph size="s">Параграф s</Paragraph>
+      <Paragraph>Параграф m</Paragraph>
+      <Paragraph size="l">Параграф l</Paragraph>
     </>
   );
 }

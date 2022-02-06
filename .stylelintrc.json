@@ -12,6 +12,7 @@
     "at-rule-no-unknown": null,
     "scss/at-rule-no-unknown": true,
     "indentation": "tab",
-    "color-hex-case": "upper"
+    "color-hex-case": "upper",
+    "selector-class-pattern": null
   }
 }
