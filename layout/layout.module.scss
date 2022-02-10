@@ -1,12 +1,15 @@
+@import "styles/vars";
+
 .app {
     display: grid;
     grid-template-columns: auto 230px minmax(320px, 1200px) auto;
     grid-template-areas:
             '. header header .'
             '. sidebar main .'
-            '. footer footer .';
+            'footer footer footer footer';
     grid-template-rows: auto 1fr auto;
     height: 100vh;
+    gap: 0 32px;
 
     &__header {
         grid-area: header;
@@ -27,9 +30,9 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $br-m) {
     .app {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(320px, 1fr);
         grid-template-areas:
             'header'
             'main'
