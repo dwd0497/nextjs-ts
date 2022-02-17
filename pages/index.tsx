@@ -5,7 +5,7 @@ import { withLayout } from "../layout/Layout";
 import axios from "axios";
 import { IMenuItem } from "../interfaces/menuItem.interface";
 
-function Home({menu}: IHome) {
+function Home({menu}: IHomePage) {
   const [rating, setRaring] = useState<number>(1);
 
   return (
@@ -35,11 +35,12 @@ function Home({menu}: IHome) {
 
 export default withLayout(Home);
 
-export const getStaticProps: GetStaticProps<IHome> = async () => {
+export const getStaticProps: GetStaticProps<IHomePage> = async () => {
   const firstCategory = 0;
   const { data: menu } = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, {
     firstCategory
   });
+
   return {
     props: {
       menu,
@@ -48,7 +49,7 @@ export const getStaticProps: GetStaticProps<IHome> = async () => {
   };
 };
 
-interface IHome extends Record<string, unknown> {
+interface IHomePage extends Record<string, unknown> {
   menu: IMenuItem[],
   firstCategory: number
 }

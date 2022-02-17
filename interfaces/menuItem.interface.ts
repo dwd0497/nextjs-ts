@@ -2,10 +2,10 @@ export interface IMenuItem {
   _id: {
     secondCategory: string,
   }
-  pages: PageItem[]
+  pages: IPageItem[]
 }
 
-export interface PageItem {
+export interface IPageItem {
   alias: string,
   title: string,
   _id: string,
