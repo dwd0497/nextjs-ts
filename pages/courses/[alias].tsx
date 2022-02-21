@@ -37,10 +37,7 @@ export const getStaticProps: GetStaticProps<ICoursePage> = async ({ params }:Get
 
   const { data: menu } = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, { firstCategory });
   const { data: page } = await axios.get<IInnerPage>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/byAlias/${params.alias}`);
-  const { data: products } = await axios.post<IProduct[]>(`${process.env.NEXT_PUBLIC_API_URL}/product/find`, {
-    category: page.category,
-    limit: 10,
-  });
+  const { data: products } = await axios.post<IProduct[]>(`${process.env.NEXT_PUBLIC_API_URL}/product/find`, { category: page.category,  limit: 10 });
   return {
     props: {
       firstCategory,

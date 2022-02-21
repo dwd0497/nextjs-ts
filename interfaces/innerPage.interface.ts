@@ -31,7 +31,7 @@ export interface IInnerPage {
   tagsTitle: string;
   metaTitle: string;
   metaDescription: string;
-  firstCategory: number;
+  firstCategory: InnerPageCategory;
   advantages: IPageAdvantage[];
   createdAt: Date;
   updatedAt: Date;

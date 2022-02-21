@@ -24,11 +24,6 @@ function Home({menu}: IHomePage) {
       <div>
         <Rating rating={rating} setRating={setRaring} isEditable />
       </div>
-      <ul>
-        {menu.map((menuItem)=> (
-          <li key={menuItem._id.secondCategory}>{menuItem._id.secondCategory}</li>
-        ))}
-      </ul>
     </>
   );
 }
