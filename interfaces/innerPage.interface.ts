@@ -1,4 +1,4 @@
-export enum InnerPageCategory {
+export enum TopLevelCategory {
   Courses,
   Services,
   Books,
@@ -31,7 +31,7 @@ export interface IInnerPage {
   tagsTitle: string;
   metaTitle: string;
   metaDescription: string;
-  firstCategory: InnerPageCategory;
+  firstCategory: TopLevelCategory;
   advantages: IPageAdvantage[];
   createdAt: Date;
   updatedAt: Date;

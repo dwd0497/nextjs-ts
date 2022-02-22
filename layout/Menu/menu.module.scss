@@ -1,1 +1,62 @@
 @import "styles/vars";
+
+.menu {
+  &__topItem {
+    margin-bottom: 20px;
+  }
+
+  &__topLink {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    align-items: center;
+    gap: 20px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+
+    &:hover,
+    &_active {
+      color: $c_brand;
+    }
+  }
+
+  &__middle {
+    margin-top: 14px;
+    margin-left: 12px;
+    padding: 8px 0 8px 32px;
+    border-left: 1px solid #DFDFDF;
+  }
+
+  &__middleItem {
+    margin-bottom: 10px;
+  }
+
+  &__middleName {
+    display: block;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    color: $c_text-light;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+
+    &:hover {
+      color: $c_brand;
+    }
+  }
+
+  &__loverLink {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    color: $c_text-light;
+
+    &:hover,
+    &_active {
+      color: $c_brand;
+    }
+  }
+}
