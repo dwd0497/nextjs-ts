@@ -7,7 +7,7 @@ import { IInnerPage } from "../../interfaces/innerPage.interface";
 import { ParsedUrlQuery } from "querystring";
 import { IProduct } from "../../interfaces/product.interface";
 
-const firstCategory = 0;
+const topLevelCategory = 0;
 
 const Course = ({ menu, page, products }: ICoursePage) => {
   return (
@@ -20,7 +20,7 @@ const Course = ({ menu, page, products }: ICoursePage) => {
 export default withLayout(Course);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data: menu } = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, { firstCategory });
+  const { data: menu } = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, { firstCategory: topLevelCategory });
 
   return {
     paths: menu.flatMap(menuItem => menuItem.pages.map(page => `/courses/${page.alias}`)),
@@ -35,12 +35,12 @@ export const getStaticProps: GetStaticProps<ICoursePage> = async ({ params }:Get
     };
   }
 
-  const { data: menu } = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, { firstCategory });
+  const { data: menu } = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, { firstCategory: topLevelCategory });
   const { data: page } = await axios.get<IInnerPage>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/byAlias/${params.alias}`);
   const { data: products } = await axios.post<IProduct[]>(`${process.env.NEXT_PUBLIC_API_URL}/product/find`, { category: page.category,  limit: 10 });
   return {
     props: {
-      firstCategory,
+      topLevelCategory,
       menu,
       page,
       products,
@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps<ICoursePage> = async ({ params }:Get
 };
 
 interface ICoursePage extends Record<string, unknown> {
-  firstCategory: number,
+  topLevelCategory: number,
   menu: IMenuItem[],
   page: IInnerPage,
   products: IProduct[],

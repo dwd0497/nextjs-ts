@@ -31,20 +31,20 @@ function Home({menu}: IHomePage) {
 export default withLayout(Home);
 
 export const getStaticProps: GetStaticProps<IHomePage> = async () => {
-  const firstCategory = 0;
+  const topLevelCategory = 0;
   const { data: menu } = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, {
-    firstCategory
+    firstCategory: topLevelCategory
   });
 
   return {
     props: {
       menu,
-      firstCategory
+      topLevelCategory
     }
   };
 };
 
 interface IHomePage extends Record<string, unknown> {
   menu: IMenuItem[],
-  firstCategory: number
+  topLevelCategory: number
 }

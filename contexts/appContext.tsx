@@ -5,16 +5,16 @@ import { TopLevelCategory } from "../interfaces/innerPage.interface";
 export interface IAppContext {
   menu: IMenuItem[];
   setMenu?: (newMenu: IMenuItem[]) => void;
-  firstCategory: TopLevelCategory
+  topLevelCategory: TopLevelCategory
 }
 
-export const AppContext = createContext<IAppContext>({ menu : [], firstCategory: TopLevelCategory.Courses });
+export const AppContext = createContext<IAppContext>({ menu : [], topLevelCategory: TopLevelCategory.Courses });
 
-const AppContextProvider = ({menu, firstCategory, children}: PropsWithChildren<IAppContext>) => {
+const AppContextProvider = ({menu, topLevelCategory, children}: PropsWithChildren<IAppContext>) => {
   const [menuState, setMenuState] = useState<IMenuItem[]>(menu);
 
   return (
-    <AppContext.Provider value={{menu: menuState, setMenu: setMenuState, firstCategory}}>
+    <AppContext.Provider value={{menu: menuState, setMenu: setMenuState, topLevelCategory}}>
       {children}
     </AppContext.Provider>
   );

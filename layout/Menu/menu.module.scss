@@ -34,7 +34,7 @@
   &__middleName {
     display: block;
     cursor: pointer;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 12px;
     line-height: 16px;
     color: $c_text-light;
@@ -48,8 +48,8 @@
 
   &__loverLink {
     display: block;
-    margin-bottom: 10px;
-    font-weight: 500;
+    margin: 0 0 10px 10px;
+    font-weight: 300;
     font-size: 14px;
     line-height: 19px;
     color: $c_text-light;

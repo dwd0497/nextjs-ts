@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AppContext } from "../../contexts/appContext";
 import { IPageItem, ITopLevelMenuItem } from "../../interfaces/menuItem.interface";
 import { TopLevelCategory } from "../../interfaces/innerPage.interface";
@@ -19,13 +19,26 @@ const topLevelMenuItems: ITopLevelMenuItem[] = [
 ];
 
 export const Menu = () => {
-  const {menu, setMenu, firstCategory} = useContext(AppContext);
+  const {menu, setMenu, topLevelCategory} = useContext(AppContext);
   const router  = useRouter();
+
+  // Эффект, который раскрывает активный пункт меню при первоначальной отрисовке
+  useEffect(()=> {
+    setMenu && setMenu(menu.map((middleLevelItem) => {
+      if (!!middleLevelItem.pages.find(p => p.alias === router.asPath.split('/')[2])) {
+        middleLevelItem.isOpened = true;
+      }
+        return middleLevelItem;
+      }
+    ));
+  }, []);
 
   const toggleMiddleLevelMenu = (secondCategory: string) => {
     setMenu && setMenu(menu.map((menuItem) => {
       if (menuItem._id.secondCategory === secondCategory) {
         menuItem.isOpened = !menuItem.isOpened;
+      } else {
+        menuItem.isOpened = false;
       }
       return menuItem;
     }));
@@ -40,7 +53,7 @@ export const Menu = () => {
               <a
                 className={cn(
                   styles.menu__topLink,
-                  {[styles.menu__topLink_active]: firstCategory === topLevelItem.id}
+                  {[styles.menu__topLink_active]: topLevelCategory === topLevelItem.id}
                 )}
                 key={topLevelItem.id}
               >
@@ -48,7 +61,7 @@ export const Menu = () => {
                 <span className={styles.menu__topName}>{topLevelItem.name}</span>
               </a>
             </Link>
-            {firstCategory === topLevelItem.id && buildMiddleLevelMenu(topLevelItem.route)}
+            {topLevelCategory === topLevelItem.id && buildMiddleLevelMenu(topLevelItem.route)}
           </li>
         ))}
       </ul>
@@ -58,12 +71,9 @@ export const Menu = () => {
   const buildMiddleLevelMenu = (topLevelRoute: string) => (
     <ul className={styles.menu__middle}>
       {menu.map((middleLevelItem) => {
-        if (!!middleLevelItem.pages.find(p => p.alias === router.asPath.split('/')[2])) {
-          middleLevelItem.isOpened = true;
-        }
         return (
           <li className={styles.menu__middleItem} key={middleLevelItem._id.secondCategory}>
-          <span className={styles.menu__middleName} onClick={() => toggleMiddleLevelMenu(middleLevelItem._id.secondCategory)}>{middleLevelItem._id.secondCategory}</span>
+            <span className={styles.menu__middleName} onClick={() => toggleMiddleLevelMenu(middleLevelItem._id.secondCategory)}>{middleLevelItem._id.secondCategory}</span>
             {middleLevelItem.isOpened && buildLoverLevelMenu(middleLevelItem.pages, topLevelRoute)}
           </li>
         );
