@@ -24,7 +24,7 @@ export interface IProduct {
   credit: number;
   oldPrice: number;
   description: string;
-  characteristics: IProductCharacteristics[];
+  characteristics?: IProductCharacteristics[];
   createdAt: Date;
   updatedAt: Date;
   __v: number;
@@ -33,5 +33,6 @@ export interface IProduct {
   reviews: IProductReview[];
   reviewCount: number;
   reviewAvg?: any;
-  advantages: string;
+  advantages?: string;
+  disadvantages?: string;
 }

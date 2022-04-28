@@ -5,7 +5,7 @@ import cn from "classnames";
 
 interface IButton extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
   rating: number,
-  setRating: (rating:number) => void,
+  setRating?: (rating:number) => void,
   isEditable?: Boolean,
 }
 
@@ -33,13 +33,13 @@ export const Rating = ({ rating, setRating, isEditable = false, ...restProps }: 
               )}
               onClick={() => {
                 if (isEditable) {
-                  setRating(i + 1);
+                  setRating && setRating(i + 1);
                   setRawRating(i + 1);
                 }
               }}
               onKeyDown={(e: React.KeyboardEvent<SVGElement>) => {
                 if (e.code === 'Space' && isEditable) {
-                  setRating(i + 1);
+                  setRating && setRating(i + 1);
                   setRawRating(i + 1);
                 }
               }}

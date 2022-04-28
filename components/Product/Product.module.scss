@@ -1,0 +1,189 @@
+@import "../../styles/vars";
+
+.product {
+  padding: 30px;
+  background: $c_white;
+  box-shadow: 0 4px 4px $c_white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+
+  &__header {
+    display: grid;
+    grid-gap: 8px 0;
+    grid-template-columns: 70px 30px 1fr 30px auto 40px auto 40px auto;
+    grid-template-areas:
+            'logo . title . price . credit . rating'
+            'logo . tags . priceTitle . creditTitle . reviewCount';
+    padding-bottom: 30px;
+    border-bottom: 1px solid $c_border;
+    margin-bottom: 30px;
+  }
+
+  &__logo {
+    grid-area: logo;
+  }
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__price {
+    grid-area: price;
+    align-self: end;
+    font-size: 20px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  &__oldPrice {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12px;
+    margin-left: 6px;
+    white-space: nowrap;
+  }
+
+  &__credit {
+    grid-area: credit;
+    align-self: end;
+    font-size: 20px;
+    line-height: 27px;
+    white-space: nowrap;
+
+    span {
+      font-size: 16px;
+    }
+  }
+
+  &__rating {
+    grid-area: rating;
+    display: flex;
+    align-self: end;
+  }
+
+  &__tags {
+    grid-area: tags;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__tag {
+    margin-right: 5px;
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    div {
+      white-space: nowrap;
+    }
+  }
+
+  &__priceTitle {
+    grid-area: priceTitle;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 19px;
+    color: $c_text;
+
+  }
+
+  &__creditTitle {
+    grid-area: creditTitle;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 19px;
+    color: $c_text;
+  }
+
+  &__reviewCount {
+    grid-area: reviewCount;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 19px;
+    color: $c_text;
+  }
+
+  &__description {
+    margin-bottom: 15px;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 60px 50%;
+    grid-template-areas: 'characteristics . advantages'
+                         'characteristics . disadvantages'
+  }
+
+  &__characteristics {
+    grid-area: characteristics;
+  }
+
+  &__characteristic {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  &__characteristicName {
+    font-weight: 700;
+  }
+
+  &__characteristicDots {
+    margin-bottom: 5px;
+    border-bottom: 1px dashed $c_border;
+  }
+
+  &__advantages {
+    grid-area: advantages;
+
+    &:after {
+      background: $c_success;
+    }
+  }
+
+  &__disadvantages {
+    grid-area: disadvantages;
+    margin-top: 20px;
+
+    &:after {
+      background: $c_alert;
+    }
+  }
+
+  &__advantages,
+  &__disadvantages {
+    position: relative;
+    padding-left: 15px;
+
+    span {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 100%;
+      left: 0;
+      top: 0;
+      width: 3px;
+      border-radius: 2px;
+    }
+  }
+
+  &__buttons {
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid $c_border;
+
+    button:first-child {
+      margin-right: 20px;
+    }
+  }
+}

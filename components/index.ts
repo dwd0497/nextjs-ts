@@ -6,3 +6,4 @@ export * from "./Rating/Rating";
 export * from "./ProductContent/ProductContent";
 export * from "./Vacancy/Vacancy";
 export * from "./Textarea/Textarea"
+export * from "./Product/Product"

@@ -12,6 +12,7 @@ import parse from 'html-react-parser';
 import { Sort } from "../Sort/Sort";
 import { SortType } from "./sortReducer";
 import { sortReducer } from "./sortReducer";
+import { Product } from "../Product/Product";
 
 interface IProductContent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   page: IInnerPage,
@@ -20,7 +21,7 @@ interface IProductContent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElemen
 }
 
 export const ProductContent = ({page, products, topLevelCategory, className, ...restProps}: IProductContent) => {
-  const [sortState, sortDispatch] = useReducer(sortReducer, {
+  const [ sortState, sortDispatch ] = useReducer(sortReducer, {
     items: products.sort((a, b) => a.initialRating > b.initialRating ? -1 : 1),
     currentType: SortType.Rating
   })
@@ -30,18 +31,22 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
       <div className={styles.product__header}>
         <Heading tag="h1">{page.title}</Heading>
         <Tag size="m" tagColor="gray">{products.length}</Tag>
-        <Sort currentSortType={sortState.currentType} onSortChange={(sortType) => sortDispatch({type: sortType})} className={styles.product__sort}  />
+        <Sort
+          currentSortType={sortState.currentType}
+          onSortChange={(sortType) => sortDispatch({type: sortType})}
+          className={styles.product__sort}
+        />
       </div>
       {!!products?.length && (
         <ul className={styles.product__list}>
-          {products.map((product) => <li key={product._id}>{product.title}</li>)}
+          {products.map((product) => <li key={product._id}><Product product={product}/></li>)}
         </ul>
       )}
-      {topLevelCategory === TopLevelCategory.Courses && page.hh &&(
-        <Vacancy title={page.category} hhData={page.hh} className={styles.product__vacancy} />
+      {topLevelCategory === TopLevelCategory.Courses && page.hh && (
+        <Vacancy title={page.category} hhData={page.hh} className={styles.product__vacancy}/>
       )}
       {!!page.advantages?.length && (
-        <Advantages className={styles.product__advantages} advantages={page.advantages} />
+        <Advantages className={styles.product__advantages} advantages={page.advantages}/>
       )}
       {!!page.seoText && (
         <div className={styles.product__seo}>
@@ -49,7 +54,7 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
         </div>
       )}
       {!!page.tags?.length && (
-        <Tags tags={page.tags} />
+        <Tags tags={page.tags}/>
       )}
     </div>
   )

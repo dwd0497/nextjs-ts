@@ -23,7 +23,7 @@
 
 	&_ghost {
 		color: $c_text;
-		border-color: $c_text;
+		border-color: $c_border;
 		background: transparent;
 	}
 
@@ -41,7 +41,7 @@
 
 	&_green {
 		color: $c_success;
-		border-color: $c_success;
+		border-color: $c_green-light;
 		background: $c_green-light;
 	}
 
