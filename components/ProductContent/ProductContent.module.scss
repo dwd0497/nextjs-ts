@@ -1,0 +1,42 @@
+.product{
+	&__header {
+		display: grid;
+		grid-gap: 20px;
+		align-items: center;
+		justify-items: left;
+		grid-template-columns: auto 1fr auto;
+	}
+
+	&__vacancy,
+	&__advantages {
+		margin-top: 50px;
+	}
+
+	&__seo,
+	&__tags {
+		margin-top: 30px;
+	}
+
+	&__seo {
+		h1 {
+			font-size: 26px;
+			font-weight: 500;
+			line-height: 35px;
+			margin: 20px 0;
+		}
+
+		h2 {
+			font-size: 20px;
+			font-weight: 500;
+			line-height: 27px;
+			margin: 15px 0;
+		}
+
+		h3 {
+			font-size: 22px;
+			font-weight: 500;
+			line-height: 30px;
+			margin: 10px 0;
+		}
+	}
+}

@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
 import styles from './Heading.module.scss';
 import cn from "classnames";
 

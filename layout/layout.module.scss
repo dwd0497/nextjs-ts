@@ -9,7 +9,7 @@
             'footer footer footer footer';
     grid-template-rows: auto 1fr auto;
     height: 100vh;
-    gap: 0 32px;
+    gap: 40px 32px;
 
     &__header {
         grid-area: header;
@@ -42,8 +42,12 @@
             display: block;
         }
 
-        &__sidebar {
+        .app__sidebar {
             display: none;
+        }
+
+        &__main {
+            padding: 0 20px;
         }
     }
 }

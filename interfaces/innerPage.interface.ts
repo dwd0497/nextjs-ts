@@ -27,13 +27,13 @@ export interface IInnerPage {
   alias: string;
   title: string;
   category: string;
-  seoText: string;
+  seoText?: string;
   tagsTitle: string;
   metaTitle: string;
   metaDescription: string;
   topLevelCategory: TopLevelCategory;
-  advantages: IPageAdvantage[];
+  advantages?: IPageAdvantage[];
   createdAt: Date;
   updatedAt: Date;
-  hh: IHHData;
+  hh?: IHHData;
 }

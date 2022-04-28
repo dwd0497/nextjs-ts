@@ -12,3 +12,5 @@ export const topLevelMenuItems: ITopLevelMenuItem[] = [
   {route: '/books', icon: <BooksIcon/>, id: TopLevelCategory.Books, name: 'Книги'},
   {route: '/products', icon: <ProductsIcon/>, id: TopLevelCategory.Products, name: 'Товары'},
 ];
+
+export const priceAdapter = (price:number): string => price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽'

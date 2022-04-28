@@ -1,0 +1,111 @@
+@import "styles/vars";
+
+.vacancy {
+	&__header {
+		display: grid;
+		grid-gap: 20px;
+		align-items: baseline;
+		justify-items: left;
+		grid-template-columns: auto 1fr auto;
+		margin-bottom: 24px;
+	}
+
+	&__info {
+		display: grid;
+		grid-gap: 20px;
+		grid-template-columns: 1fr 3fr;
+	}
+
+	&__salaryList {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr 1fr 1fr;
+		background: $c_white;
+		box-shadow: 0 4px 4px $c_shadow;
+		border-radius: 5px;
+	}
+
+	&__salary,
+	&__total {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__salary {
+		margin: 20px;
+		border-right: 1px solid $c_border;
+
+		&:last-child {
+			border-right: none;
+		}
+	}
+
+	&__text {
+		font-weight: 300;
+		font-size: 20px;
+		line-height: 27px;
+		margin-bottom: 9px;
+	}
+
+	&__count {
+		font-weight: 700;
+		font-size: 26px;
+		line-height: 35px;
+		color: $c_text;
+		margin-bottom: 10px;
+	}
+
+	&__total {
+		background: $c_white;
+		box-shadow: 0 4px 4px $c_shadow;
+		border-radius: 5px;
+		padding: 20px;
+
+		.vacancy__count {
+			color: $c_brand;
+			font-weight: 700;
+			font-size: 36px;
+			line-height: 49px;
+		}
+	}
+
+	&__stars {
+		margin: 0 auto;
+	}
+
+	&__star {
+		margin: 0 5px;
+
+		&_active circle {
+			fill: $c_alert;
+		}
+	}
+}
+
+@media (max-width: $br-l) {
+	.vacancy {
+		&__info {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+@media (max-width: $br-m) {
+	.vacancy {
+		&__salaryList {
+			grid-template-columns: 1fr;
+		}
+
+		&__salary {
+			border-right: none;
+			border-bottom: 1px solid $c_border;
+			padding-bottom: 20px;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+}
+

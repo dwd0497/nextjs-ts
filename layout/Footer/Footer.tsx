@@ -7,7 +7,7 @@ interface IFooter extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLEle
 
 export const Footer = ({className, ...restProps}: IFooter) => {
   return (
-    <footer className={cn(className, styles.footer)} {...restProps}>
+    <footer className={cn(styles.footer, className)} {...restProps}>
       <div className={styles.footer__copyright}>OwlTop © 2020 - {format(new Date(), 'yyyy')} Все права защищены</div>
       <div className={styles.footer__links}>
         <a href='#' className={styles.footer__link}>Пользовательское соглашение</a>
