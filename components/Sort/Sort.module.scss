@@ -1,0 +1,32 @@
+@import "styles/vars";
+
+.sort {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  &__item {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    grid-gap: 10px;
+
+    &:hover {
+      color: $c_brand;
+    }
+
+    &_active .sort__icon{
+      opacity: 1;
+    }
+  }
+
+  &__icon {
+    opacity: 0;
+  }
+
+  &__name {
+    white-space: nowrap;
+  }
+}
+
