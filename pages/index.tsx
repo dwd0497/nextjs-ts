@@ -1,9 +1,10 @@
 import { GetStaticProps } from "next";
-import { Button, Heading, Paragraph, Rating, Tag } from "../components";
+import { Button, Heading, Paragraph, Rating, Tag, Textarea } from "../components";
 import { useState } from "react";
 import { withLayout } from "../layout/Layout";
 import axios from "axios";
 import { IMenuItem } from "../interfaces/menuItem.interface";
+import { Input } from "../components/Input/Input";
 
 function Home({menu}: IHomePage) {
   const [rating, setRaring] = useState<number>(1);
@@ -22,7 +23,16 @@ function Home({menu}: IHomePage) {
       <Tag size="m" tagColor="green">green</Tag>
       <Tag tagColor="brand">brand</Tag>
       <div>
+        <br/>
         <Rating rating={rating} setRating={setRaring} isEditable />
+      </div>
+      <br/>
+      <div>
+        <Input placeholder="Тест"/>
+      </div>
+      <br/>
+      <div>
+        <Textarea placeholder="Тест"/>
       </div>
     </>
   );
