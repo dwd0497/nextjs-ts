@@ -19,7 +19,7 @@ export const Button = ({ appearance = 'primary', arrow = 'none', children, class
       {...restProps}
     >
       {children}
-      <ArrowIcon className={cn(styles.button__arrow, {[styles.button__arrow_down]: arrow === 'down'})} />
+      {arrow !== 'none' && <ArrowIcon className={cn(styles.button__arrow, {[styles.button__arrow_down]: arrow === 'down'})}/>}
     </button>
   );
 };

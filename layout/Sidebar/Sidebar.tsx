@@ -4,6 +4,7 @@ import Logo from '/public/images/logo.svg'
 import cn from "classnames";
 import styles from "./sidebar.module.scss";
 import Link from "next/link"
+import { Search } from "../../components/Search/Search";
 
 interface ISidebar extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>{ }
 
@@ -15,7 +16,7 @@ export const Sidebar = ({className, ...props}: ISidebar) => {
           <Logo />
         </a>
       </Link>
-      <div>Поиск</div>
+      <Search />
       <Menu />
     </aside>
   );
