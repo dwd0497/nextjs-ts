@@ -29,8 +29,8 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
   return (
     <div className={cn(styles.product, className)} {...restProps}>
       <div className={styles.product__header}>
-        <Heading tag="h1">{page.title}</Heading>
-        <Tag size="m" tagColor="gray">{products.length}</Tag>
+        <Heading tag="h1" className={styles.product__title}>{page.title}</Heading>
+        <Tag size="m" tagColor="gray" className={styles.product__count}>{products.length}</Tag>
         <Sort
           currentSortType={sortState.currentType}
           onSortChange={(sortType) => sortDispatch({type: sortType})}

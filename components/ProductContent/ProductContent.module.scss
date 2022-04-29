@@ -1,3 +1,5 @@
+@import "../../styles/vars";
+
 .product {
 	&__header {
 		display: grid;
@@ -38,6 +40,29 @@
 			font-weight: 500;
 			line-height: 30px;
 			margin: 10px 0;
+		}
+	}
+}
+
+@media (max-width: $br-s) {
+	.product {
+		&__header {
+			grid-gap: 10px;
+			grid-template-columns: auto 1fr;
+			grid-template-areas: 'title count'
+								 'sort sort';
+		}
+
+		&__title {
+			grid-area: title;
+		}
+
+		&__count {
+			grid-area: count;
+		}
+
+		&__sort {
+			grid-area: sort;
 		}
 	}
 }

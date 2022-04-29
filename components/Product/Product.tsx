@@ -8,6 +8,7 @@ import { Tag } from "../Tag/Tag";
 import { Paragraph } from "../Paragraph/Paragraph";
 import { Button } from "../Button/Button";
 import { declDepOnNumber, priceAdapter } from "../../helpers/helpers";
+import Image from 'next/image'
 
 interface IProductComponent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: IProduct,
@@ -17,7 +18,13 @@ export const Product = ({ product, className, ...restProps }: IProductComponent)
   return (
     <div className={cn(styles.product, className)} {...restProps}>
       <div className={styles.product__header}>
-        <img src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} className={styles.product__logo}/>
+        <Image
+          src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
+          alt={product.title}
+          width={70}
+          height={70}
+          className={styles.product__logo}
+        />
         <Heading tag="h3" className={styles.product__title}>{product.title}</Heading>
         <div className={styles.product__price}>
           {priceAdapter(product.price)}

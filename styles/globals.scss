@@ -11,6 +11,9 @@ body {
 
 	font-family: $font-family;
 }
+body {
+	min-width: 375px;
+}
 
 a {
 	text-decoration: none;

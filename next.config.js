@@ -5,6 +5,9 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
   },
+  images: {
+    domains: ['courses-top.ru']
+  },
   webpack(config) {
     config.module.rules.push({
       loader: '@svgr/webpack',

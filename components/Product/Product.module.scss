@@ -187,3 +187,53 @@
     }
   }
 }
+
+@media (max-width: $br_l) {
+  .product {
+    padding: 20px;
+
+    &__header {
+      grid-gap: 10px;
+      grid-template-columns: 70px auto auto auto;
+      grid-template-areas:
+            'logo title title title'
+            'tags tags tags tags'
+            'price price credit rating'
+            'priceTitle priceTitle creditTitle reviewCount';
+    }
+  }
+}
+
+@media (max-width: $br_s) {
+  .product {
+    padding: 10px;
+
+    &__header {
+      grid-template-columns: 70px auto;
+      grid-template-areas:
+            'logo title'
+            'tags tags'
+            'price price'
+            'priceTitle priceTitle'
+            'credit credit'
+            'creditTitle creditTitle'
+            'rating rating'
+            'reviewCount reviewCount';
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    &__body {
+      gap: 20px;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+            'characteristics'
+            'advantages';
+    }
+
+    &__buttons {
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+  }
+}
