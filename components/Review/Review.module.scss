@@ -1,0 +1,74 @@
+@import "../../styles/vars";
+
+.review {
+  padding: 30px;
+  background: $c_light-brand;
+  box-shadow: 0 4px 4px $c_shadow;
+  border-radius: 5px;
+
+  &__header {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 30px auto auto 1fr auto;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &__name {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: $c_text;
+  }
+
+  &__title {
+    font-size: 14px;
+    line-height: 24px;
+    color: $c_text;
+  }
+
+  &__date {
+    font-size: 14px;
+    line-height: 24px;
+    color: $c_text;
+    white-space: nowrap;
+    justify-self: end;
+  }
+
+  &__description {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $c_border;
+  }
+}
+
+@media (max-width: $br-s) {
+  .review {
+    &__header {
+      grid-template-columns: 30px auto 1fr;
+      grid-template-areas: 'user name title'
+                           'date date rating';
+    }
+
+    &__name {
+      grid-area: name;
+    }
+
+    &__icon {
+      grid-area: user;
+    }
+
+    &__title {
+      grid-area: title;
+    }
+
+    &__date {
+      grid-area: date;
+      justify-self: start;
+    }
+
+    &__rating {
+      grid-area: rating;
+    }
+  }
+}
