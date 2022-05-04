@@ -5,6 +5,7 @@ import { withLayout } from "../layout/Layout";
 import axios from "axios";
 import { IMenuItem } from "../interfaces/menuItem.interface";
 import { Input } from "../components/Input/Input";
+import { API } from "../helpers/api";
 
 function Home({menu}: IHomePage) {
   const [rating, setRaring] = useState<number>(1);
@@ -42,7 +43,7 @@ export default withLayout(Home);
 
 export const getStaticProps: GetStaticProps<IHomePage> = async () => {
   const topLevelCategory = 0;
-  const { data: menu } = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, {
+  const { data: menu } = await axios.post<IMenuItem[]>(API.topPage.find, {
     firstCategory: topLevelCategory
   });
 

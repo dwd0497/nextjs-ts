@@ -56,6 +56,14 @@
     grid-gap: 10px;
     grid-template-columns: 1fr;
     position: relative;
+
+    &_error {
+      background: $c_alert;
+
+      .form__feedbackClose path {
+        stroke: $c_red;
+      }
+    }
   }
 
   &__feedbackClose {

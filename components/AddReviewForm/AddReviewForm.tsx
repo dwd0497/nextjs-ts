@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, FormHTMLAttributes } from 'react';
+import React, { DetailedHTMLProps, FormHTMLAttributes, useEffect, useState } from 'react';
 import styles from './AddReviewForm.module.scss';
 import cn from "classnames";
 import { Input } from "../Input/Input";
@@ -7,6 +7,8 @@ import { Textarea } from "../Textarea/Textarea";
 import { Button } from "../Button/Button";
 import CloseIcon from './close.svg'
 import { useForm, Controller } from "react-hook-form";
+import axios from "axios";
+import { API } from "../../helpers/api";
 
 interface IReview extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   productId: string | number,
@@ -19,13 +21,32 @@ interface IReviewForm {
   message: string,
 }
 
+const initialFormState = {
+  success: false,
+  error: false,
+};
+
 export const AddReviewForm = ({productId, className, ...restProps}: IReview) => {
 
-  const {control, register, handleSubmit, formState: {errors}} = useForm<IReviewForm>();
+  const [submitStatus, setSubmitStatus] = useState<{success: boolean, error: boolean}>(initialFormState)
 
-  const onSubmit = (data: IReviewForm) => {
-    console.log('submit', data)
+  const {control, register, handleSubmit, formState: { errors, isSubmitSuccessful }, reset } = useForm<IReviewForm>();
+
+  const onSubmit = async (formData: IReviewForm) => {
+    try {
+      const { data } = await axios.post(API.review.createDemo, {...formData, description: formData.message, productId})
+      console.log(data)
+      setSubmitStatus({ success: true, error: false })
+    } catch(e) {
+      setSubmitStatus({ success: false, error: true })
+    }
   }
+
+  useEffect(() => {
+    if ( isSubmitSuccessful && submitStatus.success ) {
+      reset();
+    }
+  }, [isSubmitSuccessful])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={cn(styles.form, className)} {...restProps}>
@@ -62,11 +83,19 @@ export const AddReviewForm = ({productId, className, ...restProps}: IReview) => 
         <Button className={styles.form__button}>Отправить</Button>
         * Перед публикацией отзыв пройдет предварительную модерацию и проверку
       </div>
-      <div className={styles.form__feedback}>
-        <span>Ваш отзыв отправлен.</span>
-        <span>Спасибо, ваш отзыв будет опубликован после проверки.</span>
-        <CloseIcon className={styles.form__feedbackClose}/>
-      </div>
+      {submitStatus.success && (
+        <div className={styles.form__feedback}>
+          <span>Ваш отзыв отправлен.</span>
+          <span>Спасибо, ваш отзыв будет опубликован после проверки.</span>
+          <CloseIcon className={styles.form__feedbackClose} onClick={() => setSubmitStatus(initialFormState)}/>
+        </div>
+      )}
+      {submitStatus.error && (
+        <div className={cn(styles.form__feedback, styles.form__feedback_error)}>
+          <span>Упс, что-то пошло не так, попробуйте позже.</span>
+          <CloseIcon className={styles.form__feedbackClose} onClick={() => setSubmitStatus(initialFormState)}/>
+        </div>
+      )}
     </form>
   );
 };

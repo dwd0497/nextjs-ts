@@ -6,6 +6,7 @@ import { IMenuItem } from "../../interfaces/menuItem.interface";
 import { ParsedUrlQuery } from "querystring";
 import { topLevelMenuItems } from "../../helpers/helpers";
 import { TopLevelCategory } from "../../interfaces/innerPage.interface";
+import { API } from "../../helpers/api";
 
 const Category = ({topLevelCategory}: ICategoryPage) => {
   return (
@@ -39,7 +40,7 @@ export const getStaticProps: GetStaticProps<ICategoryPage> = async ({params}: Ge
     };
   }
 
-  const {data: menu} = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, {firstCategory: topLevelMenuItem.id});
+  const {data: menu} = await axios.post<IMenuItem[]>(API.topPage.find, {firstCategory: topLevelMenuItem.id});
   return {
     props: {
       topLevelCategory: topLevelMenuItem.id,

@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, ForwardedRef, forwardRef, HTMLAttributes, useState } from 'react';
+import React, { DetailedHTMLProps, ForwardedRef, forwardRef, HTMLAttributes, useEffect, useState } from 'react';
 import styles from './Rating.module.scss';
 import Star from './star.svg';
 import cn from "classnames";
@@ -14,6 +14,10 @@ interface IButton extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HT
 export const Rating = forwardRef(({ rating, setRating, isEditable = false, className, error, ...restProps }: IButton, ref: ForwardedRef<HTMLUListElement>) => {
 
   const [rawRating, setRawRating] = useState<number>(rating);
+
+  useEffect(()=> {
+    setRawRating(rating);
+  },[rating])
 
   return (
     <div

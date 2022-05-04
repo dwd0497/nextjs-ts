@@ -3,6 +3,7 @@ import { Heading } from "../components";
 import { withLayout } from "../layout/Layout";
 import axios from "axios";
 import { IMenuItem } from "../interfaces/menuItem.interface";
+import { API } from "../helpers/api";
 
 function Search({menu}: ISearchPage) {
 
@@ -17,7 +18,7 @@ export default withLayout(Search);
 
 export const getStaticProps: GetStaticProps<ISearchPage> = async () => {
   const topLevelCategory = 0;
-  const {data: menu} = await axios.post<IMenuItem[]>(`${process.env.NEXT_PUBLIC_API_URL}/top-page/find`, {
+  const {data: menu} = await axios.post<IMenuItem[]>(API.topPage.find, {
     firstCategory: topLevelCategory
   });
 
