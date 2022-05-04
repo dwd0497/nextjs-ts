@@ -8,7 +8,7 @@ export const enum SortType {
 type SortActions = {type: SortType.Price} | {type: SortType.Rating}
 
 interface sortState<T> {
-  currentType: SortType;
+  currentType: SortType | null;
   items: T;
 }
 

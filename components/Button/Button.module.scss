@@ -6,8 +6,6 @@
 	box-sizing: border-box;
 	padding: 10px;
 
-	transition: all 0.2s;
-
 	text-align: center;
 
 	color: $c_white;
@@ -32,6 +30,7 @@
 		display: inline-block;
 
 		margin-left: 10px;
+		transition: all 0.2s;
 
 		&_down {
 			transition: all 0.2s;

@@ -26,9 +26,6 @@ export const Review = ({ review, className, ...restProps }: IReview) => {
         <Rating rating={rating} />
       </div>
       <Paragraph size="s" className={styles.review__description}>{description}</Paragraph>
-      <div className={styles.review__form}>
-        Form
-      </div>
     </div>
   );
 };

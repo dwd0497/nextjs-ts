@@ -1,7 +1,7 @@
-import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
 import styles from './Product.module.scss';
 import cn from "classnames";
-import { IProduct, IProductCharacteristics } from "../../interfaces/product.interface";
+import { IProduct } from "../../interfaces/product.interface";
 import { Heading } from "../Heading/Heading";
 import { Rating } from "../Rating/Rating";
 import { Tag } from "../Tag/Tag";
@@ -10,23 +10,29 @@ import { Button } from "../Button/Button";
 import { declDepOnNumber, priceAdapter } from "../../helpers/helpers";
 import Image from 'next/image'
 import { Review } from "../Review/Review";
+import { AddReviewForm } from "../AddReviewForm/AddReviewForm";
 
 interface IProductComponent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: IProduct,
 }
 
 export const Product = ({ product, className, ...restProps }: IProductComponent) => {
+  const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+
   return (
     <>
       <div className={cn(styles.product, className)} {...restProps}>
         <div className={styles.product__header}>
-          <Image
-            src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
-            alt={product.title}
-            width={70}
-            height={70}
-            className={styles.product__logo}
-          />
+          <div className={styles.product__logo}>
+            <Image
+              src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
+              alt={product.title}
+              width={70}
+              height={70}
+              objectFit="contain"
+              objectPosition="top"
+            />
+          </div>
           <Heading tag="h3" className={styles.product__title}>{product.title}</Heading>
           <div className={styles.product__price}>
             {priceAdapter(product.price)}
@@ -73,12 +79,18 @@ export const Product = ({ product, className, ...restProps }: IProductComponent)
         </div>
         <div className={styles.product__buttons}>
           <Button>Узнать подробнее</Button>
-          <Button appearance="second" arrow="right">Узнать подробнее</Button>
+          <Button appearance="second" arrow={isReviewOpened ? "down" : "right"} onClick={() => setIsReviewOpened(!isReviewOpened)}>Читать отзывы</Button>
         </div>
       </div>
-      {!!product.reviews?.length && (
+      {!!product.reviews?.length && isReviewOpened && (
         product.reviews.map((review) => <Review key={review._id} review={review} />)
       )}
+      {product.reviews?.length === 0 && isReviewOpened && (
+        <div className={styles.product__emptyReviews}>
+          <Paragraph>Будьте первым. Оставьте свой отзыв о продукте.</Paragraph>
+        </div>
+      )}
+      {isReviewOpened && <AddReviewForm productId={product._id} />}
     </>
   );
 };

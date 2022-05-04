@@ -5,7 +5,7 @@ import SortIcon from './SortIcon.svg'
 import { SortType } from "../ProductContent/sortReducer";
 
 interface ISort extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
-  currentSortType: SortType,
+  currentSortType: SortType | null,
   onSortChange: (sortType: SortType) => void
 }
 

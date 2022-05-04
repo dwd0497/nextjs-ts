@@ -16,8 +16,12 @@
       color: $c_brand;
     }
 
-    &_active .sort__icon{
-      opacity: 1;
+    &_active {
+      color: $c_brand;
+
+      .sort__icon{
+        opacity: 1;
+      }
     }
   }
 

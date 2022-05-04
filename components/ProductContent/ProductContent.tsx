@@ -10,7 +10,6 @@ import { Advantages } from "../Advantages/Advantages";
 import { Tags } from "../Tags/Tags";
 import parse from 'html-react-parser';
 import { Sort } from "../Sort/Sort";
-import { SortType } from "./sortReducer";
 import { sortReducer } from "./sortReducer";
 import { Product } from "../Product/Product";
 
@@ -22,8 +21,8 @@ interface IProductContent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElemen
 
 export const ProductContent = ({page, products, topLevelCategory, className, ...restProps}: IProductContent) => {
   const [ sortState, sortDispatch ] = useReducer(sortReducer, {
-    items: products.sort((a, b) => a.initialRating > b.initialRating ? -1 : 1),
-    currentType: SortType.Rating
+    items: products,
+    currentType: null
   })
 
   return (
