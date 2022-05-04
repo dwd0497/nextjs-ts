@@ -1,20 +1,20 @@
-import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
+import React, { DetailedHTMLProps, ForwardedRef, forwardRef, HTMLAttributes, useState } from 'react';
 import styles from './Rating.module.scss';
 import Star from './star.svg';
 import cn from "classnames";
 
 interface IButton extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
   rating: number,
-  setRating?: (rating:number) => void,
+  setRating?: (rating: number) => void,
   isEditable?: Boolean,
 }
 
-export const Rating = ({ rating, setRating, isEditable = false, ...restProps }: IButton) => {
+export const Rating = forwardRef(({ rating, setRating, isEditable = false, ...restProps }: IButton, ref: ForwardedRef<HTMLUListElement>) => {
 
   const [rawRating, setRawRating] = useState<number>(rating);
 
   return (
-    <ul className={styles.rating} {...restProps}>
+    <ul className={styles.rating} {...restProps} ref={ref}>
       {new Array(5).fill(<></>).map((item, i) => {
         return (
           <li
@@ -50,4 +50,4 @@ export const Rating = ({ rating, setRating, isEditable = false, ...restProps }: 
       })}
     </ul>
   );
-};
+});
