@@ -3,6 +3,14 @@
 .rating {
 	display: flex;
 
+	&__wrapper {
+		position: relative;
+
+		&_error svg {
+			stroke: $c_alert;
+		}
+	}
+
 	&__item {
 		padding-right: 5px;
 
@@ -25,5 +33,13 @@
 		&_filled {
 			fill: $c_brand;
 		}
+	}
+
+	&__errorMessage {
+		position: absolute;
+		bottom: -26px;
+		left: 0;
+		color: $c_alert;
+		white-space: nowrap;
 	}
 }

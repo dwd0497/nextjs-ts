@@ -45,6 +45,10 @@ h3 {
 input,
 textarea {
 	font-family: $font-family;
+
+	&::placeholder {
+		color: $c_gray;
+	}
 }
 
 p {

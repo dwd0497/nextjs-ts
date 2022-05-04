@@ -8,12 +8,25 @@
 	font-size: 16px;
 	line-height: 22px;
 	outline-color: $c_brand;
-	border: none;
+	border: 1px solid transparent;
 	padding: 7px 12px;
 	min-height: 36px;
 	min-width: 200px;
+	width: 100%;
+	resize: none;
 
-	&::placeholder {
-		color: $c_gray;
+	&_error {
+		border-color: $c_alert;
+	}
+
+	&__wrapper {
+		position: relative;
+	}
+
+	&__errorMessage {
+		position: absolute;
+		bottom: -15px;
+		left: 0;
+		color: $c_alert;
 	}
 }

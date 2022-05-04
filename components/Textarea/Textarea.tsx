@@ -1,16 +1,24 @@
 import React, { DetailedHTMLProps, forwardRef, ForwardedRef } from 'react';
 import cn from "classnames";
 import styles from "./Textarea.module.scss";
+import { FieldErrors } from "react-hook-form";
 
 interface ITextarea extends DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
+  error?: FieldErrors
 }
 
-export const Textarea = forwardRef(({className, children, ...restProps}: ITextarea, ref: ForwardedRef<HTMLTextAreaElement>) => {
+export const Textarea = forwardRef(({className, children, error, ...restProps}: ITextarea, ref: ForwardedRef<HTMLTextAreaElement>) => {
   return (
-    <textarea
-      className={cn(styles.textarea, className)}
-      ref={ref}
-      {...restProps}
-    />
+    <div className={cn(styles.textarea__wrapper, className)}>
+          <textarea
+            className={cn(
+              styles.textarea,
+              {[styles.textarea_error]: error}
+            )}
+            ref={ref}
+            {...restProps}
+          />
+      {error && <span className={styles.textarea__errorMessage}>{error.message}</span>}
+    </div>
   );
 });

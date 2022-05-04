@@ -5,7 +5,7 @@ import { Input } from "../Input/Input";
 import { Rating } from "../Rating/Rating";
 import { Textarea } from "../Textarea/Textarea";
 import { Button } from "../Button/Button";
-import CloseIcon from  './close.svg'
+import CloseIcon from './close.svg'
 import { useForm, Controller } from "react-hook-form";
 
 interface IReview extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -19,11 +19,11 @@ interface IReviewForm {
   message: string,
 }
 
-export const AddReviewForm = ({ productId, className, ...restProps }: IReview) => {
+export const AddReviewForm = ({productId, className, ...restProps}: IReview) => {
 
-  const { control, register, handleSubmit } = useForm<IReviewForm>();
+  const {control, register, handleSubmit, formState: {errors}} = useForm<IReviewForm>();
 
-  const onSubmit = (data: IReviewForm)=> {
+  const onSubmit = (data: IReviewForm) => {
     console.log('submit', data)
   }
 
@@ -32,27 +32,31 @@ export const AddReviewForm = ({ productId, className, ...restProps }: IReview) =
       <Input
         placeholder="Имя"
         className={styles.form__name}
-        {...register('name')}
+        {...register('name', {required: {value: true, message: 'Введите ваше имя'}})}
+        error={errors.name}
       />
       <Input
         placeholder="Заголовок отзыва"
         className={styles.form__title}
-        {...register('title')}
+        {...register('title', {required: {value: true, message: 'Введите заголовок отзыва'}})}
+        error={errors.title}
       />
       <div className={styles.form__rating}>
         Оценка:
         <Controller
           control={control}
           name="rating"
-          render={({ field })=> (
-            <Rating rating={field.value} setRating={field.onChange} ref={field.ref} isEditable />
+          rules={{ required: { value: true, message: 'Выберите оценку' } }}
+          render={({field}) => (
+            <Rating rating={field.value} setRating={field.onChange} ref={field.ref} error={errors.rating} isEditable/>
           )}
         />
       </div>
       <Textarea
         placeholder="Текст отзыва"
         className={styles.form__message}
-        {...register('message')}
+        {...register('message', {required: {value: true, message: 'Введите текст отзыва'}})}
+        error={errors.message}
       />
       <div className={styles.form__submit}>
         <Button className={styles.form__button}>Отправить</Button>
@@ -61,7 +65,7 @@ export const AddReviewForm = ({ productId, className, ...restProps }: IReview) =
       <div className={styles.form__feedback}>
         <span>Ваш отзыв отправлен.</span>
         <span>Спасибо, ваш отзыв будет опубликован после проверки.</span>
-        <CloseIcon className={styles.form__feedbackClose} />
+        <CloseIcon className={styles.form__feedbackClose}/>
       </div>
     </form>
   );
