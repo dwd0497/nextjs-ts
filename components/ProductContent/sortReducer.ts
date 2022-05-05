@@ -3,16 +3,17 @@ import { IProduct } from "../../interfaces/product.interface";
 export const enum SortType {
   Rating,
   Price,
+  Reset
 }
 
-type SortActions = {type: SortType.Price} | {type: SortType.Rating}
+type SortActions = {type: SortType.Price} | {type: SortType.Rating} | {type: SortType.Reset, payload: IProduct[]}
 
-interface sortState<T> {
+interface sortState {
   currentType: SortType | null;
-  items: T;
+  items: IProduct[];
 }
 
-export const sortReducer = (state: sortState<IProduct[]>, action: SortActions):sortState<IProduct[]>  => {
+export const sortReducer = (state: sortState, action: SortActions):sortState  => {
   switch (action.type) {
     case SortType.Price:
       return {
@@ -23,6 +24,11 @@ export const sortReducer = (state: sortState<IProduct[]>, action: SortActions):s
       return {
         currentType: SortType.Rating,
         items: state.items.sort((a, b) => a.initialRating > b.initialRating ? -1 : 1),
+      }
+    case SortType.Reset:
+      return {
+        currentType: null,
+        items: action.payload,
       }
     default:
       throw new Error('Неверный тип сортировки')

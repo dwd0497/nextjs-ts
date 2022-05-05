@@ -6,7 +6,7 @@ import { SortType } from "../ProductContent/sortReducer";
 
 interface ISort extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
   currentSortType: SortType | null,
-  onSortChange: (sortType: SortType) => void
+  onSortChange: (sortType: SortType.Price | SortType.Rating) => void
 }
 
 export const Sort = ({className, currentSortType, onSortChange, ...restProps}: ISort) => {

@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, HTMLAttributes, useReducer } from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes, useEffect, useReducer } from 'react';
 import { IInnerPage, TopLevelCategory } from "../../interfaces/innerPage.interface";
 import styles from './ProductContent.module.scss';
 import { IProduct } from "../../interfaces/product.interface";
@@ -10,7 +10,7 @@ import { Advantages } from "../Advantages/Advantages";
 import { Tags } from "../Tags/Tags";
 import parse from 'html-react-parser';
 import { Sort } from "../Sort/Sort";
-import { sortReducer } from "./sortReducer";
+import { sortReducer, SortType } from "./sortReducer";
 import { Product } from "../Product/Product";
 
 interface IProductContent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -25,6 +25,10 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
     currentType: null
   })
 
+  useEffect(()=> {
+    sortDispatch({type: SortType.Reset, payload: products})
+  }, [products])
+
   return (
     <div className={cn(styles.product, className)} {...restProps}>
       <div className={styles.product__header}>
@@ -32,7 +36,7 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
         <Tag size="m" tagColor="gray" className={styles.product__count}>{products.length}</Tag>
         <Sort
           currentSortType={sortState.currentType}
-          onSortChange={(sortType) => sortDispatch({type: sortType})}
+          onSortChange={(sortType:SortType.Price | SortType.Rating) => sortDispatch({type: sortType})}
           className={styles.product__sort}
         />
       </div>
