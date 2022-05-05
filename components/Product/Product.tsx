@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes, useRef, useState } from 'react';
 import styles from './Product.module.scss';
 import cn from "classnames";
 import { IProduct } from "../../interfaces/product.interface";
@@ -18,6 +18,16 @@ interface IProductComponent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElem
 
 export const Product = ({ product, className, ...restProps }: IProductComponent) => {
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+
+  const reviewRef = useRef<HTMLDivElement>(null)
+
+  const scrollToReview = async () => {
+    await setIsReviewOpened(true);
+    reviewRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
 
   return (
     <>
@@ -48,7 +58,9 @@ export const Product = ({ product, className, ...restProps }: IProductComponent)
           <p className={styles.product__priceTitle}>цена</p>
           <p className={styles.product__creditTitle}>в кредит</p>
           <p className={styles.product__reviewCount}>
-            {product.reviewCount} {declDepOnNumber(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+            <a href="#toReview" onClick={scrollToReview}>
+              {product.reviewCount} {declDepOnNumber(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+            </a>
           </p>
         </div>
         <Paragraph className={styles.product__description}>{product.description}</Paragraph>
@@ -82,15 +94,19 @@ export const Product = ({ product, className, ...restProps }: IProductComponent)
           <Button appearance="second" arrow={isReviewOpened ? "down" : "right"} onClick={() => setIsReviewOpened(!isReviewOpened)}>Читать отзывы</Button>
         </div>
       </div>
-      {!!product.reviews?.length && isReviewOpened && (
-        product.reviews.map((review) => <Review key={review._id} review={review} />)
-      )}
-      {product.reviews?.length === 0 && isReviewOpened && (
-        <div className={styles.product__emptyReviews}>
-          <Paragraph>Будьте первым. Оставьте свой отзыв о продукте.</Paragraph>
+      {isReviewOpened && (
+        <div className={styles.product__reviewBlock} ref={reviewRef}>
+          {!!product.reviews?.length && (
+            product.reviews.map((review) => <Review  key={review._id} review={review} />)
+          )}
+          {product.reviews?.length === 0 && (
+            <div className={styles.product__emptyReviews}>
+              <Paragraph>Будьте первым. Оставьте свой отзыв о продукте.</Paragraph>
+            </div>
+          )}
+          <AddReviewForm productId={product._id} />
         </div>
       )}
-      {isReviewOpened && <AddReviewForm productId={product._id} />}
     </>
   );
 };
