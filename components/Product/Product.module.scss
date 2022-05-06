@@ -198,6 +198,10 @@
       border-top: 1px solid $c_border;
     }
   }
+
+  &__reviewBlock {
+    overflow: hidden;
+  }
 }
 
 @media (max-width: $br_l) {

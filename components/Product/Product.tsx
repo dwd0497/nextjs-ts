@@ -30,6 +30,17 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
     });
   }
 
+  const variants = {
+    visible: {
+      opacity: 1,
+      height: 'auto',
+    },
+    hidden: {
+      opacity: 0,
+      height: 0,
+    }
+  }
+
   return (
     <div ref={ref} className={styles.product__wrapper}>
       <div className={cn(styles.product, className)} {...restProps}>
@@ -95,19 +106,24 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
           <Button appearance="second" arrow={isReviewOpened ? "down" : "right"} onClick={() => setIsReviewOpened(!isReviewOpened)}>Читать отзывы</Button>
         </div>
       </div>
-      {isReviewOpened && (
-        <div className={styles.product__reviewBlock} ref={reviewRef}>
-          {!!product.reviews?.length && (
-            product.reviews.map((review) => <Review  key={review._id} review={review} />)
-          )}
-          {product.reviews?.length === 0 && (
-            <div className={styles.product__emptyReviews}>
-              <Paragraph>Будьте первым. Оставьте свой отзыв о продукте.</Paragraph>
-            </div>
-          )}
-          <AddReviewForm productId={product._id} />
-        </div>
-      )}
+      <motion.div
+        className={styles.product__reviewBlock}
+        ref={reviewRef}
+        layout
+        variants={variants}
+        initial={'hidden'}
+        animate={isReviewOpened ? 'visible': 'hidden'}
+      >
+        {!!product.reviews?.length && (
+          product.reviews.map((review) => <Review  key={review._id} review={review} />)
+        )}
+        {product.reviews?.length === 0 && (
+          <div className={styles.product__emptyReviews}>
+            <Paragraph>Будьте первым. Оставьте свой отзыв о продукте.</Paragraph>
+          </div>
+        )}
+        <AddReviewForm productId={product._id} />
+      </motion.div>
     </div>
   );
 }));
