@@ -46,6 +46,12 @@ export const getStaticProps: GetStaticProps<IProductPage> = async ({params}: Get
 
   try {
     const {data: menu} = await axios.post<IMenuItem[]>(API.topPage.find, {firstCategory: topLevelMenuItem.id});
+    menu.forEach((middleLevelItem) => {
+        if (!!middleLevelItem.pages.find(p => p.alias === params.alias)) {
+          middleLevelItem.isOpened = true;
+        }
+      }
+    )
     if (menu.length === 0) {
       return {
         notFound: true,

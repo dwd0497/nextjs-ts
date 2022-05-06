@@ -42,7 +42,7 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
       </div>
       {!!products?.length && (
         <ul className={styles.product__list}>
-          {products.map((product) => <li key={product._id}><Product product={product}/></li>)}
+          {products.map((product) => <li key={product._id}><Product layout product={product}/></li>)}
         </ul>
       )}
       {topLevelCategory === TopLevelCategory.Courses && page.hh && (

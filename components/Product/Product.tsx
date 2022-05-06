@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, HTMLAttributes, useRef, useState } from 'react';
+import React, { DetailedHTMLProps, ForwardedRef, forwardRef, HTMLAttributes, useRef, useState } from 'react';
 import styles from './Product.module.scss';
 import cn from "classnames";
 import { IProduct } from "../../interfaces/product.interface";
@@ -11,12 +11,13 @@ import { declDepOnNumber, priceAdapter } from "../../helpers/helpers";
 import Image from 'next/image'
 import { Review } from "../Review/Review";
 import { AddReviewForm } from "../AddReviewForm/AddReviewForm";
+import { motion } from "framer-motion";
 
 interface IProductComponent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: IProduct,
 }
 
-export const Product = ({ product, className, ...restProps }: IProductComponent) => {
+export const Product = motion(forwardRef(({ product, className, ...restProps }: IProductComponent, ref:ForwardedRef<HTMLDivElement>) => {
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
 
   const reviewRef = useRef<HTMLDivElement>(null)
@@ -30,7 +31,7 @@ export const Product = ({ product, className, ...restProps }: IProductComponent)
   }
 
   return (
-    <>
+    <div ref={ref} className={styles.product__wrapper}>
       <div className={cn(styles.product, className)} {...restProps}>
         <div className={styles.product__header}>
           <div className={styles.product__logo}>
@@ -107,6 +108,6 @@ export const Product = ({ product, className, ...restProps }: IProductComponent)
           <AddReviewForm productId={product._id} />
         </div>
       )}
-    </>
+    </div>
   );
-};
+}));
