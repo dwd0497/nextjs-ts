@@ -12,6 +12,7 @@ import parse from 'html-react-parser';
 import { Sort } from "../Sort/Sort";
 import { sortReducer, SortType } from "./sortReducer";
 import { Product } from "../Product/Product";
+import { useScrollY } from "../../hooks/useScrollY";
 
 interface IProductContent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   page: IInnerPage,
@@ -29,8 +30,11 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
     sortDispatch({type: SortType.Reset, payload: products})
   }, [products])
 
+  const y = useScrollY();
+
   return (
     <div className={cn(styles.product, className)} {...restProps}>
+      {y}
       <div className={styles.product__header}>
         <Heading tag="h1" className={styles.product__title}>{page.title}</Heading>
         <Tag size="m" tagColor="gray" className={styles.product__count}>{products.length}</Tag>
