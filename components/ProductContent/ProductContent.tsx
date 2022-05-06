@@ -30,11 +30,8 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
     sortDispatch({type: SortType.Reset, payload: products})
   }, [products])
 
-  const y = useScrollY();
-
   return (
     <div className={cn(styles.product, className)} {...restProps}>
-      {y}
       <div className={styles.product__header}>
         <Heading tag="h1" className={styles.product__title}>{page.title}</Heading>
         <Tag size="m" tagColor="gray" className={styles.product__count}>{products.length}</Tag>
