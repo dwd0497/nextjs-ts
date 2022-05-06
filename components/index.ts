@@ -8,3 +8,4 @@ export * from "./Vacancy/Vacancy";
 export * from "./Textarea/Textarea"
 export * from "./Product/Product"
 export * from "./Up/Up"
+export * from "./ButtonIcon/ButtonIcon"
