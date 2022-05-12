@@ -13,7 +13,6 @@
 
     &__header {
         grid-area: header;
-        display: none;
     }
 
     &__sidebar {
@@ -37,10 +36,7 @@
             'header'
             'main'
             'footer';
-
-        &__header {
-            display: block;
-        }
+        gap: 20px;
 
         .app__sidebar {
             display: none;

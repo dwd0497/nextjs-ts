@@ -28,6 +28,7 @@ export const ButtonIcon = ({ appearance = 'primary', icon, className, ...restPro
         {[styles.button_white]: appearance === 'white'},
         className,
       )}
+      {...restProps}
     >
       <IconComp />
     </button>
