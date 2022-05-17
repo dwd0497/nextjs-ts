@@ -1,14 +1,16 @@
 @import "styles/vars";
 
 .button {
-	width: 40px;
-	height: 40px;
-	border-radius: 8px;
-	background: $c_brand;
-	border: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	width: 40px;
+	height: 40px;
+
+	border: none;
+	border-radius: 8px;
+	background: $c_brand;
 
 	& svg * {
 		fill: $c_white;

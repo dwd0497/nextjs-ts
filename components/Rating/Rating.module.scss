@@ -11,6 +11,10 @@
 		}
 	}
 
+	&__star {
+		display: block;
+	}
+
 	&__item {
 		padding-right: 5px;
 
@@ -18,28 +22,26 @@
 			padding-right: 0;
 		}
 
-		&_editable .rating__star{
+		&_editable .rating__star {
 			cursor: pointer;
-		}
-
-		&:not(&_editable) .rating__star{
-			outline: none;
 		}
 
 		&_filled .rating__star {
 			fill: $c_brand;
 		}
-	}
 
-	&__star {
-		display: block;
+		&:not(&_editable) .rating__star {
+			outline: none;
+		}
 	}
 
 	&__errorMessage {
 		position: absolute;
 		bottom: -26px;
 		left: 0;
-		color: $c_alert;
+
 		white-space: nowrap;
+
+		color: $c_alert;
 	}
 }

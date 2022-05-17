@@ -1,64 +1,73 @@
 @import "styles/vars";
 
 .menu {
-  &__topItem {
-    margin-bottom: 20px;
-  }
+	&__topItem {
+		margin-bottom: 20px;
+	}
 
-  &__topLink {
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    align-items: center;
-    gap: 20px;
-    font-weight: 500;
-    font-size: 18px;
+	&__topLink {
+		display: grid;
+		align-items: center;
 
-    &:hover,
-    &_active {
-      color: $c_brand;
-    }
-  }
+		font-size: 18px;
+		font-weight: 500;
+		grid-template-columns: 24px 1fr;
+		gap: 20px;
 
-  &__middle {
-    margin-top: 14px;
-    margin-left: 12px;
-    padding: 8px 0 8px 32px;
-    border-left: 1px solid #DFDFDF;
-  }
+		&:hover,
+		&_active {
+			color: $c_brand;
+		}
+	}
 
-  &__middleItem {
-    overflow: hidden;
-  }
+	&__middle {
+		margin-top: 14px;
+		margin-left: 12px;
+		padding: 8px 0 8px 32px;
 
-  &__middleName {
-    padding: 0 2px;
-    display: block;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 12px;
-    color: $c_text-light;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    outline-offset: -1px;
-    border: none;
-    background: none;
+		border-left: 1px solid #DFDFDF;
+	}
 
-    &:hover {
-      color: $c_brand;
-    }
-  }
+	&__middleItem {
+		overflow: hidden;
+	}
 
-  &__loverLink {
-    padding: 0 2px;
-    display: block;
-    margin: 0 0 10px 10px;
-    font-weight: 300;
-    font-size: 14px;
-    color: $c_text-light;
+	&__middleName {
+		display: block;
 
-    &:hover,
-    &_active {
-      color: $c_brand;
-    }
-  }
+		margin-bottom: 12px;
+		padding: 0 2px;
+
+		cursor: pointer;
+		text-transform: uppercase;
+
+		color: $c_text-light;
+		border: none;
+		outline-offset: -1px;
+		background: none;
+
+		font-size: 12px;
+		font-weight: 500;
+
+		&:hover {
+			color: $c_brand;
+		}
+	}
+
+	&__loverLink {
+		display: block;
+
+		margin: 0 0 10px 10px;
+		padding: 0 2px;
+
+		color: $c_text-light;
+
+		font-size: 14px;
+		font-weight: 300;
+
+		&:hover,
+		&_active {
+			color: $c_brand;
+		}
+	}
 }

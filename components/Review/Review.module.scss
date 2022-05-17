@@ -1,82 +1,89 @@
 @import "../../styles/vars";
 
 .review {
-  padding: 30px 30px 0;
-  background: $c_light-brand;
-  box-shadow: 0 4px 4px $c_shadow;
-  border-radius: 5px;
+	padding: 30px 30px 0;
 
-  &__header {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 30px auto auto 1fr auto;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+	border-radius: 5px;
+	background: $c_light-brand;
+	box-shadow: 0 4px 4px $c_shadow;
 
-  &__name {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 24px;
-    color: $c_text;
-  }
+	&__header {
+		display: grid;
+		align-items: center;
 
-  &__title {
-    font-size: 14px;
-    line-height: 24px;
-    color: $c_text;
-  }
+		margin-bottom: 10px;
+		grid-gap: 20px;
+		grid-template-columns: 30px auto auto 1fr auto;
+	}
 
-  &__date {
-    font-size: 14px;
-    line-height: 24px;
-    color: $c_text;
-    white-space: nowrap;
-    justify-self: end;
-  }
+	&__name {
+		color: $c_text;
 
-  &__description {
-    padding-bottom: 30px;
-    border-bottom: 1px solid $c_border;
-  }
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 24px;
+	}
+
+	&__title {
+		color: $c_text;
+
+		font-size: 14px;
+		line-height: 24px;
+	}
+
+	&__date {
+		white-space: nowrap;
+
+		color: $c_text;
+
+		font-size: 14px;
+		line-height: 24px;
+		justify-self: end;
+	}
+
+	&__description {
+		padding-bottom: 30px;
+
+		border-bottom: 1px solid $c_border;
+	}
 }
 
 @media (max-width: $br-m) {
-  .review {
-    padding: 20px 20px 0;
-  }
+	.review {
+		padding: 20px 20px 0;
+	}
 }
 
-
 @media (max-width: $br-s) {
-  .review {
-    padding: 10px 10px 0;
+	.review {
+		padding: 10px 10px 0;
 
-    &__header {
-      grid-template-columns: 30px auto 1fr;
-      grid-template-areas: 'user name title'
-                           'date date rating';
-    }
+		&__header {
+			grid-template-columns: 30px auto 1fr;
+			grid-template-areas:
+				"user name title"
+				"date date rating";
+		}
 
-    &__name {
-      grid-area: name;
-    }
+		&__name {
+			grid-area: name;
+		}
 
-    &__icon {
-      grid-area: user;
-    }
+		&__icon {
+			grid-area: user;
+		}
 
-    &__title {
-      grid-area: title;
-    }
+		&__title {
+			grid-area: title;
+		}
 
-    &__date {
-      grid-area: date;
-      justify-self: start;
-    }
+		&__date {
+			grid-area: date;
+			justify-self: start;
+		}
 
-    &__rating {
-      grid-area: rating;
-    }
-  }
+		&__rating {
+			grid-area: rating;
+		}
+	}
 }

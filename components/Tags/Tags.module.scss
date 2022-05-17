@@ -21,9 +21,8 @@
 			margin-right: 0;
 		}
 
-		div:first-letter {
+		div::first-letter {
 			text-transform: uppercase;
 		}
 	}
 }
-

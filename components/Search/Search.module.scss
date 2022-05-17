@@ -2,6 +2,7 @@
 
 .search {
 	position: relative;
+
 	width: 100%;
 
 	&__input {
@@ -12,10 +13,13 @@
 		position: absolute;
 		top: 50%;
 		right: 4px;
-		transform: translateY(-50%);
-		padding: 6px;
+
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		padding: 6px;
+
+		transform: translateY(-50%);
 	}
 }

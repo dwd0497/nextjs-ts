@@ -1,105 +1,115 @@
 @import "../../styles/vars";
 
 .form {
-  padding: 30px;
-  background: $c_light-brand;
-  box-shadow: 0 4px 4px $c_shadow;
-  border-radius: 5px;
-  font-size: 14px;
-  line-height: 24px;
-  color: $c_text;
-  display: grid;
-  align-items: center;
-  grid-gap: 20px 30px;
-  grid-template-columns: 220px 220px 1fr;
-  grid-template-areas: 'name title rating'
-                       'message message message'
-                       'submit submit submit'
-                       'feedback feedback feedback';
+	display: grid;
+	align-items: center;
 
-  &__name {
-    grid-area: name;
-  }
+	padding: 30px;
 
-  &__title {
-    grid-area: title;
-  }
+	color: $c_text;
+	border-radius: 5px;
+	background: $c_light-brand;
+	box-shadow: 0 4px 4px $c_shadow;
 
-  &__rating {
-    grid-area: rating;
-    justify-self: end;
-    display: grid;
-    align-items: center;
-    grid-gap: 20px;
-    grid-template-columns: auto auto;
-  }
+	font-size: 14px;
+	line-height: 24px;
+	grid-gap: 20px 30px;
+	grid-template-columns: 220px 220px 1fr;
+	grid-template-areas:
+		"name title rating"
+		"message message message"
+		"submit submit submit"
+		"feedback feedback feedback";
 
-  &__message {
-    grid-area: message;
-    resize: none;
-  }
+	&__name {
+		grid-area: name;
+	}
 
-  &__submit {
-    grid-area: submit;
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 120px auto;
-    align-items: center;
-  }
+	&__title {
+		grid-area: title;
+	}
 
-  &__feedback {
-    grid-area: feedback;
-    padding: 20px;
-    background: $c_green-light;
-    border-radius: 5px;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 1fr;
-    position: relative;
+	&__rating {
+		display: grid;
+		align-items: center;
+		grid-area: rating;
+		justify-self: end;
+		grid-gap: 20px;
+		grid-template-columns: auto auto;
+	}
 
-    &_error {
-      background: $c_alert;
+	&__message {
+		resize: none;
+		grid-area: message;
+	}
 
-      .form__feedbackClose path {
-        stroke: $c_red;
-      }
-    }
-  }
+	&__submit {
+		display: grid;
+		align-items: center;
+		grid-area: submit;
+		grid-gap: 20px;
+		grid-template-columns: 120px auto;
+	}
 
-  &__feedbackClose {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-    border: none;
-    background: none;
-  }
+	&__feedback {
+		position: relative;
+
+		display: grid;
+
+		padding: 20px;
+
+		border-radius: 5px;
+		background: $c_green-light;
+		grid-area: feedback;
+		grid-gap: 10px;
+		grid-template-columns: 1fr;
+
+		&_error {
+			background: $c_alert;
+
+			.form__feedbackClose path {
+				stroke: $c_red;
+			}
+		}
+	}
+
+	&__feedbackClose {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+
+		cursor: pointer;
+
+		border: none;
+		background: none;
+	}
 }
 
 @media (max-width: $br-l) {
-  .form {
-    padding: 20px;
-    grid-template-columns: 180px 180px 1fr;
-  }
+	.form {
+		padding: 20px;
+		grid-template-columns: 180px 180px 1fr;
+	}
 }
 
 @media (max-width: $br-s) {
-  .form {
-    padding: 10px;
-    grid-template-columns: 1fr;
-    grid-template-areas: 'rating'
-                         'name'
-                         'title'
-                         'message'
-                         'submit'
-                         'feedback';
+	.form {
+		padding: 10px;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"rating"
+			"name"
+			"title"
+			"message"
+			"submit"
+			"feedback";
 
-    &__rating {
-      justify-self: start;
-    }
+		&__rating {
+			justify-self: start;
+		}
 
-    &__submit {
-      grid-template-columns: 1fr;
-    }
-  }
+		&__submit {
+			grid-template-columns: 1fr;
+		}
+	}
 }
