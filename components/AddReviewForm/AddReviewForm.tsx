@@ -12,6 +12,7 @@ import { API } from "../../helpers/api";
 
 interface IReview extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   productId: string | number,
+  isOpened: boolean;
 }
 
 interface IReviewForm {
@@ -26,7 +27,7 @@ const initialFormState = {
   error: false,
 };
 
-export const AddReviewForm = ({productId, className, ...restProps}: IReview) => {
+export const AddReviewForm = ({productId, className, isOpened, ...restProps}: IReview) => {
 
   const [submitStatus, setSubmitStatus] = useState<{success: boolean, error: boolean}>(initialFormState)
 
@@ -55,12 +56,14 @@ export const AddReviewForm = ({productId, className, ...restProps}: IReview) => 
         className={styles.form__name}
         {...register('name', {required: {value: true, message: 'Введите ваше имя'}})}
         error={errors.name}
+        tabIndex={isOpened ? 0 : -1}
       />
       <Input
         placeholder="Заголовок отзыва"
         className={styles.form__title}
         {...register('title', {required: {value: true, message: 'Введите заголовок отзыва'}})}
         error={errors.title}
+        tabIndex={isOpened ? 0 : -1}
       />
       <div className={styles.form__rating}>
         Оценка:
@@ -69,7 +72,14 @@ export const AddReviewForm = ({productId, className, ...restProps}: IReview) => 
           name="rating"
           rules={{ required: { value: true, message: 'Выберите оценку' } }}
           render={({field}) => (
-            <Rating rating={field.value} setRating={field.onChange} ref={field.ref} error={errors.rating} isEditable/>
+            <Rating
+              rating={field.value}
+              setRating={field.onChange}
+              ref={field.ref}
+              error={errors.rating}
+              isEditable
+              tabIndex={isOpened ? 0 : -1}
+            />
           )}
         />
       </div>
@@ -78,9 +88,10 @@ export const AddReviewForm = ({productId, className, ...restProps}: IReview) => 
         className={styles.form__message}
         {...register('message', {required: {value: true, message: 'Введите текст отзыва'}})}
         error={errors.message}
+        tabIndex={isOpened ? 0 : -1}
       />
       <div className={styles.form__submit}>
-        <Button className={styles.form__button}>Отправить</Button>
+        <Button className={styles.form__button} tabIndex={isOpened ? 0 : -1}>Отправить</Button>
         * Перед публикацией отзыв пройдет предварительную модерацию и проверку
       </div>
       {submitStatus.success && (

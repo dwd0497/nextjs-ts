@@ -28,6 +28,7 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
       behavior: 'smooth',
       block: 'start',
     });
+    reviewRef.current?.focus();
   }
 
   const variants = {
@@ -113,16 +114,17 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
         variants={variants}
         initial={'hidden'}
         animate={isReviewOpened ? 'visible': 'hidden'}
+        tabIndex={isReviewOpened ? 0 : -1}
       >
         {!!product.reviews?.length && (
-          product.reviews.map((review) => <Review  key={review._id} review={review} />)
+          product.reviews.map((review) => <Review key={review._id} review={review} />)
         )}
         {product.reviews?.length === 0 && (
           <div className={styles.product__emptyReviews}>
             <Paragraph>Будьте первым. Оставьте свой отзыв о продукте.</Paragraph>
           </div>
         )}
-        <AddReviewForm productId={product._id} />
+        <AddReviewForm productId={product._id} isOpened={isReviewOpened} />
       </motion.div>
     </div>
   );
