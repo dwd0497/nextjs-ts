@@ -106,9 +106,9 @@ export const Menu = () => {
         <Link href={`${topLevelRoute}/${page.alias}`}>
           <a tabIndex={isOpened ? 0 : -1} className={cn(
             styles.menu__loverLink,
-            {[styles.menu__loverLink_active]: page.alias === router.asPath.split('/')[2].split('#')[0]}
+            {[styles.menu__loverLink_active]: page.alias === router.asPath.split('/')[2]?.split('#')[0]}
             )}
-            aria-current={page.alias === router.asPath.split('/')[2].split('#')[0] ? 'page' : false}
+            aria-current={page.alias === router.asPath.split('/')[2]?.split('#')[0] ? 'page' : false}
           >
             {page.title}
           </a>

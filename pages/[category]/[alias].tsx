@@ -14,13 +14,17 @@ import Head from "next/head";
 const ProductPage = ({page, products, topLevelCategory}: IProductPage) => {
   return (
     <>
-      <Head>
-        <title>{page.metaTitle}</title>
-        <meta name="description" content={page.metaDescription} />
-        <meta property="og:title" content={page.metaTitle} />
-        <meta property={"og:type"} content="artice" />
-      </Head>
-      <ProductContent page={page} products={products} topLevelCategory={topLevelCategory} />
+      {page && products && (
+        <>
+          <Head>
+            <title>{page.metaTitle}</title>
+            <meta name="description" content={page.metaDescription} />
+            <meta property="og:title" content={page.metaTitle} />
+            <meta property={"og:type"} content="artice" />
+          </Head>
+          <ProductContent page={page} products={products} topLevelCategory={topLevelCategory} />
+        </>
+      )}
     </>
   )
 };
