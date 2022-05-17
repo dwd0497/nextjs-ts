@@ -9,9 +9,20 @@ import { IProduct } from "../../interfaces/product.interface";
 import { topLevelMenuItems } from "../../helpers/helpers";
 import { ProductContent } from "../../components";
 import { API } from "../../helpers/api";
+import Head from "next/head";
 
 const ProductPage = ({page, products, topLevelCategory}: IProductPage) => {
-  return <ProductContent page={page} products={products} topLevelCategory={topLevelCategory} />
+  return (
+    <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name="description" content={page.metaDescription} />
+        <meta property="og:title" content={page.metaTitle} />
+        <meta property={"og:type"} content="artice" />
+      </Head>
+      <ProductContent page={page} products={products} topLevelCategory={topLevelCategory} />
+    </>
+  )
 };
 
 export default withLayout(ProductPage);
