@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes, KeyboardEvent } from 'react';
 import styles from './Sort.module.scss';
 import cn from "classnames";
 import SortIcon from './SortIcon.svg'
@@ -17,6 +17,13 @@ export const Sort = ({className, currentSortType, onSortChange, ...restProps}: I
           {[styles.sort__item_active]: currentSortType === SortType.Rating}
         )}
         onClick={() => onSortChange(SortType.Rating)}
+        onKeyDown={(key:KeyboardEvent<HTMLLIElement>) => {
+          if (key.code === 'Space' || key.code === 'Enter') {
+            key.preventDefault();
+            onSortChange(SortType.Rating);
+          }
+        }}
+        tabIndex={0}
       >
         <SortIcon className={styles.sort__icon}/>
         <span className={styles.sort__name}>По рейтингу</span>
@@ -26,6 +33,13 @@ export const Sort = ({className, currentSortType, onSortChange, ...restProps}: I
           {[styles.sort__item_active]: currentSortType === SortType.Price}
         )}
         onClick={() => onSortChange(SortType.Price)}
+        onKeyDown={(key:KeyboardEvent<HTMLLIElement>) => {
+          if (key.code === 'Space' || key.code === 'Enter') {
+            key.preventDefault();
+            onSortChange(SortType.Price);
+          }
+        }}
+        tabIndex={0}
       >
         <SortIcon className={styles.sort__icon}/>
         <span className={styles.sort__name}>По цене</span>

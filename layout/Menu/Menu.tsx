@@ -106,7 +106,7 @@ export const Menu = () => {
         <Link href={`${topLevelRoute}/${page.alias}`}>
           <a tabIndex={isOpened ? 0 : -1} className={cn(
             styles.menu__loverLink,
-            {[styles.menu__loverLink_active]: page.alias === router.asPath.split('/')[2]}
+            {[styles.menu__loverLink_active]: page.alias === router.asPath.split('/')[2].split('#')[0]}
           )}
           >
             {page.title}
