@@ -11,40 +11,49 @@ interface ISort extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTML
 
 export const Sort = ({className, currentSortType, onSortChange, ...restProps}: ISort) => {
   return (
-    <ul className={cn(styles.sort, className)} {...restProps}>
-      <li
-        className={cn(styles.sort__item,
-          {[styles.sort__item_active]: currentSortType === SortType.Rating}
-        )}
-        onClick={() => onSortChange(SortType.Rating)}
-        onKeyDown={(key:KeyboardEvent<HTMLLIElement>) => {
-          if (key.code === 'Space' || key.code === 'Enter') {
-            key.preventDefault();
-            onSortChange(SortType.Rating);
-          }
-        }}
-        tabIndex={0}
-      >
-        <SortIcon className={styles.sort__icon}/>
-        <span className={styles.sort__name}>По рейтингу</span>
-      </li>
-      <li
-        className={cn(styles.sort__item,
-          {[styles.sort__item_active]: currentSortType === SortType.Price}
-        )}
-        onClick={() => onSortChange(SortType.Price)}
-        onKeyDown={(key:KeyboardEvent<HTMLLIElement>) => {
-          if (key.code === 'Space' || key.code === 'Enter') {
-            key.preventDefault();
-            onSortChange(SortType.Price);
-          }
-        }}
-        tabIndex={0}
-      >
-        <SortIcon className={styles.sort__icon}/>
-        <span className={styles.sort__name}>По цене</span>
-      </li>
-    </ul>
+    <div className={styles.sort__wrapper}>
+      <div className={styles.sort__title} id='sort'>Сортировка</div>
+      <ul className={cn(styles.sort, className)} {...restProps}>
+        <li
+          id='rating'
+          className={cn(styles.sort__item,
+            {[styles.sort__item_active]: currentSortType === SortType.Rating}
+          )}
+          onClick={() => onSortChange(SortType.Rating)}
+          onKeyDown={(key:KeyboardEvent<HTMLLIElement>) => {
+            if (key.code === 'Space' || key.code === 'Enter') {
+              key.preventDefault();
+              onSortChange(SortType.Rating);
+            }
+          }}
+          tabIndex={0}
+          aria-selected={currentSortType === SortType.Rating}
+          aria-labelledby="sort rating"
+        >
+          <SortIcon className={styles.sort__icon}/>
+          <span className={styles.sort__name}>По рейтингу</span>
+        </li>
+        <li
+          id='price'
+          className={cn(styles.sort__item,
+            {[styles.sort__item_active]: currentSortType === SortType.Price}
+          )}
+          onClick={() => onSortChange(SortType.Price)}
+          onKeyDown={(key:KeyboardEvent<HTMLLIElement>) => {
+            if (key.code === 'Space' || key.code === 'Enter') {
+              key.preventDefault();
+              onSortChange(SortType.Price);
+            }
+          }}
+          tabIndex={0}
+          aria-selected={currentSortType === SortType.Price}
+          aria-labelledby="sort price"
+        >
+          <SortIcon className={styles.sort__icon}/>
+          <span className={styles.sort__name}>По цене</span>
+        </li>
+      </ul>
+    </div>
   )
 };
 

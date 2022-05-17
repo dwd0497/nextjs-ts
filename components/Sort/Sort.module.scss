@@ -5,6 +5,10 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 
+  &__title {
+    display: none;
+  }
+
   &__item {
     cursor: pointer;
     display: grid;

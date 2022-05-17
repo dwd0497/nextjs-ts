@@ -58,18 +58,26 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
           </div>
           <Heading tag="h3" className={styles.product__title}>{product.title}</Heading>
           <div className={styles.product__price}>
-            {priceAdapter(product.price)}
-            <Tag tagColor="green" className={styles.product__oldPrice}>- {priceAdapter(product.oldPrice - product.price)}</Tag>
+            <span><span className='visually-hidden'>цена</span>{priceAdapter(product.price)}</span>
+            {product.oldPrice && (
+              <span>
+                <span className='visually-hidden'>скидка</span>
+                <Tag tagColor="green" className={styles.product__oldPrice}>- {priceAdapter(product.oldPrice - product.price)}</Tag>
+              </span>
+            )}
           </div>
-          <p className={styles.product__credit}>{priceAdapter(product.credit)}<span>/мес</span></p>
-          <Rating rating={product.reviewAvg} className={styles.product__rating} />
+          <p className={styles.product__credit}><span className='visually-hidden'>кредит</span>{priceAdapter(product.credit)}<span>/мес</span></p>
+          <div className={styles.product__rating}>
+            <span className='visually-hidden'>{`Рейтинг ${product.reviewAvg}`}</span>
+            <Rating rating={product.reviewAvg} />
+          </div>
           {!!product.tags?.length && (
             <ul className={styles.product__tags}>
               {product.tags.map((tag) => <li key={tag} className={styles.product__tag}><Tag tagColor="ghost">{tag}</Tag></li>)}
             </ul>
           )}
-          <p className={styles.product__priceTitle}>цена</p>
-          <p className={styles.product__creditTitle}>в кредит</p>
+          <p className={styles.product__priceTitle} aria-hidden={true}>цена</p>
+          <p className={styles.product__creditTitle} aria-hidden={true}>в кредит</p>
           <p className={styles.product__reviewCount}>
             <a href="#toReview" onClick={scrollToReview}>
               {product.reviewCount} {declDepOnNumber(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}

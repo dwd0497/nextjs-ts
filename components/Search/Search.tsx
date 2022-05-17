@@ -33,7 +33,7 @@ export const Search = ({ className, ...restProps }: ISearch) => {
         className={styles.search__input}
         onKeyDown={handleKeyDown}
       />
-      <Button onClick={goToSearch} className={styles.search__button}>
+      <Button onClick={goToSearch} className={styles.search__button} aria-label="Искать по сайту">
         <MagnifierIcon className={styles.search__icon} />
       </Button>
     </div>

@@ -13,6 +13,7 @@ import { Sort } from "../Sort/Sort";
 import { sortReducer, SortType } from "./sortReducer";
 import { Product } from "../Product/Product";
 import { useScrollY } from "../../hooks/useScrollY";
+import { declDepOnNumber } from "../../helpers/helpers";
 
 interface IProductContent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   page: IInnerPage,
@@ -34,7 +35,14 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
     <div className={cn(styles.product, className)} {...restProps}>
       <div className={styles.product__header}>
         <Heading tag="h1" className={styles.product__title}>{page.title}</Heading>
-        <Tag size="m" tagColor="gray" className={styles.product__count}>{products.length}</Tag>
+        <Tag
+          size="m"
+          tagColor="gray"
+          className={styles.product__count}
+          aria-label={`${products.length} ${declDepOnNumber(products.length, ['элемент', 'элемента', 'элементов'])}`}
+        >
+          {products.length}
+        </Tag>
         <Sort
           currentSortType={sortState.currentType}
           onSortChange={(sortType:SortType.Price | SortType.Rating) => sortDispatch({type: sortType})}
