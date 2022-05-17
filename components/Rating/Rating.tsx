@@ -86,6 +86,12 @@ export const Rating = forwardRef(({ rating, setRating, isEditable = false, class
                     setRawRating(i + 1);
                   }
                 }}
+                role={isEditable ? 'slider' : ''}
+                aria-valuenow={rating}
+                aria-valuemin={1}
+                aria-valuemax={5}
+                aria-label={isEditable ? 'Укажите рейтинг' : `Рейтинг ${rating}`}
+                aria-invalid={!!error}
               >
                 <Star
                   className={cn(
@@ -101,7 +107,7 @@ export const Rating = forwardRef(({ rating, setRating, isEditable = false, class
           );
         })}
       </ul>
-      {error && <span className={styles.rating__errorMessage}>{error.message}</span>}
+      {error && <span className={styles.rating__errorMessage} role="alert">{error.message}</span>}
     </div>
   );
 });

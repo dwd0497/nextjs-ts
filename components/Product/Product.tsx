@@ -112,7 +112,14 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
         </div>
         <div className={styles.product__buttons}>
           <Button>Узнать подробнее</Button>
-          <Button appearance="second" arrow={isReviewOpened ? "down" : "right"} onClick={() => setIsReviewOpened(!isReviewOpened)}>Читать отзывы</Button>
+          <Button
+            appearance="second"
+            arrow={isReviewOpened ? "down" : "right"}
+            onClick={() => setIsReviewOpened(!isReviewOpened)}
+            aria-expanded={isReviewOpened}
+          >
+            Читать отзывы
+          </Button>
         </div>
       </div>
       <motion.div

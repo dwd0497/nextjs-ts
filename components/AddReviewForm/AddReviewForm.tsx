@@ -31,7 +31,7 @@ export const AddReviewForm = ({productId, className, isOpened, ...restProps}: IR
 
   const [submitStatus, setSubmitStatus] = useState<{success: boolean, error: boolean}>(initialFormState)
 
-  const {control, register, handleSubmit, formState: { errors, isSubmitSuccessful }, reset } = useForm<IReviewForm>();
+  const {control, register, handleSubmit, formState: { errors, isSubmitSuccessful }, reset, clearErrors } = useForm<IReviewForm>();
 
   const onSubmit = async (formData: IReviewForm) => {
     try {
@@ -57,6 +57,7 @@ export const AddReviewForm = ({productId, className, isOpened, ...restProps}: IR
         {...register('name', {required: {value: true, message: 'Введите ваше имя'}})}
         error={errors.name}
         tabIndex={isOpened ? 0 : -1}
+        aria-invalid={!!errors.name}
       />
       <Input
         placeholder="Заголовок отзыва"
@@ -64,6 +65,7 @@ export const AddReviewForm = ({productId, className, isOpened, ...restProps}: IR
         {...register('title', {required: {value: true, message: 'Введите заголовок отзыва'}})}
         error={errors.title}
         tabIndex={isOpened ? 0 : -1}
+        aria-invalid={!!errors.title}
       />
       <div className={styles.form__rating}>
         Оценка:
@@ -89,22 +91,36 @@ export const AddReviewForm = ({productId, className, isOpened, ...restProps}: IR
         {...register('message', {required: {value: true, message: 'Введите текст отзыва'}})}
         error={errors.message}
         tabIndex={isOpened ? 0 : -1}
+        aria-label="Текст отзыва"
+        aria-invalid={!!errors.message}
       />
       <div className={styles.form__submit}>
-        <Button className={styles.form__button} tabIndex={isOpened ? 0 : -1}>Отправить</Button>
+        <Button className={styles.form__button} tabIndex={isOpened ? 0 : -1} onClick={() => clearErrors()}>Отправить</Button>
         * Перед публикацией отзыв пройдет предварительную модерацию и проверку
       </div>
       {submitStatus.success && (
-        <div className={styles.form__feedback}>
+        <div className={styles.form__feedback} role='alert'>
           <span>Ваш отзыв отправлен.</span>
           <span>Спасибо, ваш отзыв будет опубликован после проверки.</span>
-          <CloseIcon className={styles.form__feedbackClose} onClick={() => setSubmitStatus(initialFormState)}/>
+          <button
+            className={styles.form__feedbackClose}
+            onClick={() => setSubmitStatus(initialFormState)}
+            aria-label="Закрыть оповещение"
+          >
+            <CloseIcon />
+          </button>
         </div>
       )}
       {submitStatus.error && (
-        <div className={cn(styles.form__feedback, styles.form__feedback_error)}>
+        <div className={cn(styles.form__feedback, styles.form__feedback_error)} role='alert'>
           <span>Упс, что-то пошло не так, попробуйте позже.</span>
-          <CloseIcon className={styles.form__feedbackClose} onClick={() => setSubmitStatus(initialFormState)}/>
+          <button
+            className={styles.form__feedbackClose}
+            onClick={() => setSubmitStatus(initialFormState)}
+            aria-label="Закрыть оповещение"
+          >
+            <CloseIcon />
+          </button>
         </div>
       )}
     </form>
