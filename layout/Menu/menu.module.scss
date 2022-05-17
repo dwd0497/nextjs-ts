@@ -40,6 +40,8 @@
     text-transform: uppercase;
     margin-bottom: 12px;
     outline-offset: -1px;
+    border: none;
+    background: none;
 
     &:hover {
       color: $c_brand;

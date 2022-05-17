@@ -53,7 +53,7 @@ export const Menu = () => {
     <nav className={styles.menu} role="navigation">
       <ul className={styles.menu__top}>
         {topLevelMenuItems.map((topLevelItem) => (
-          <li className={styles.menu__topItem} key={topLevelItem.id}>
+          <li className={styles.menu__topItem} key={topLevelItem.id} aria-expanded={topLevelCategory === topLevelItem.id}>
             <Link href={topLevelItem.route}>
               <a
                 className={cn(
@@ -78,22 +78,22 @@ export const Menu = () => {
       {menu.map((middleLevelItem) => {
         return (
           <li className={styles.menu__middleItem} key={middleLevelItem._id.secondCategory}>
-            <span
+            <button
               className={styles.menu__middleName}
               onClick={() => toggleMiddleLevelMenu(middleLevelItem._id.secondCategory)}
-              tabIndex={0}
               onKeyDown={(key: KeyboardEvent<HTMLSpanElement>) => openSecondLevelByKey(key, middleLevelItem._id.secondCategory)}
+              aria-expanded={middleLevelItem.isOpened}
             >
               {middleLevelItem._id.secondCategory}
-            </span>
-            <motion.div
+            </button>
+            <motion.ul
               layout
               variants={variants}
               initial={middleLevelItem.isOpened ? 'visible' : 'hidden'}
               animate={middleLevelItem.isOpened ? 'visible' : 'hidden'}
             >
               {buildLoverLevelMenu(middleLevelItem.pages, topLevelRoute, !!middleLevelItem.isOpened)}
-            </motion.div>
+            </motion.ul>
           </li>
         );
       })}
@@ -102,17 +102,18 @@ export const Menu = () => {
 
   const buildLoverLevelMenu = (pages: IPageItem[], topLevelRoute: string, isOpened: boolean) => (
     pages.map((page) => (
-      <motion.div key={page.title} variants={variantsChildren}>
+      <motion.li key={page.title} variants={variantsChildren}>
         <Link href={`${topLevelRoute}/${page.alias}`}>
           <a tabIndex={isOpened ? 0 : -1} className={cn(
             styles.menu__loverLink,
             {[styles.menu__loverLink_active]: page.alias === router.asPath.split('/')[2].split('#')[0]}
-          )}
+            )}
+            aria-current={page.alias === router.asPath.split('/')[2].split('#')[0] ? 'page' : false}
           >
             {page.title}
           </a>
         </Link>
-      </motion.div>
+      </motion.li>
     ))
   );
 
