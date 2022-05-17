@@ -6,7 +6,7 @@ import { Button } from "../Button/Button";
 import MagnifierIcon from "./magnifier.svg"
 import { useRouter } from "next/router";
 
-interface ISearch extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface ISearch extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   appearance?: "primary" | "second",
   arrow?: 'right' | 'down' | 'none',
 }
@@ -26,7 +26,7 @@ export const Search = ({ className, ...restProps }: ISearch) => {
   }
 
   return (
-    <div className={cn(styles.search, className)} {...restProps}>
+    <form className={cn(styles.search, className)} {...restProps} role="search">
       <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -36,6 +36,6 @@ export const Search = ({ className, ...restProps }: ISearch) => {
       <Button onClick={goToSearch} className={styles.search__button} aria-label="Искать по сайту">
         <MagnifierIcon className={styles.search__icon} />
       </Button>
-    </div>
+    </form>
   );
 };

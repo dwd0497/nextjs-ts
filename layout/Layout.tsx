@@ -11,7 +11,7 @@ const Layout = ({children}: {children: JSX.Element}) => {
     <div className={styles.app}>
       <Header className={styles.app__header} />
       <Sidebar className={styles.app__sidebar} />
-      <main className={styles.app__main}>{children}</main>
+      <main className={styles.app__main} role="main">{children}</main>
       <Footer className={styles.app__footer} />
       <Up />
     </div>
