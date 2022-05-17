@@ -9,7 +9,7 @@ export const icons = {
   up,
   menu,
   close,
-}
+};
 
 export type iconsType = keyof typeof icons;
 
@@ -20,7 +20,7 @@ interface ButtonIcon extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonEl
 }
 
 export const ButtonIcon = ({ appearance = 'primary', icon, className, ...restProps }: ButtonIcon) => {
-  const IconComp = icons[icon]
+  const IconComp = icons[icon];
   return (
     <button
       className={cn(

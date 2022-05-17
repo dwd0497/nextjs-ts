@@ -2,11 +2,10 @@ import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
 import styles from './Review.module.scss';
 import { IProductReview } from "../../interfaces/product.interface";
 import cn from "classnames";
-import UserIcon from './user.svg'
-import { Rating } from "../Rating/Rating";
-import { Paragraph } from "../Paragraph/Paragraph";
-import { format } from "date-fns"
-import { ru } from "date-fns/locale"
+import UserIcon from './user.svg';
+import { Rating, Paragraph } from "../../components";
+import { format } from "date-fns";
+import { ru } from "date-fns/locale";
 
 
 interface IReview extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

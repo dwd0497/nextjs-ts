@@ -19,19 +19,19 @@ export const sortReducer = (state: sortState, action: SortActions):sortState  =>
       return {
         currentType: SortType.Price,
         items: state.items.sort((a, b) => a.price > b.price ? -1 : 1),
-      }
+      };
     case SortType.Rating:
       return {
         currentType: SortType.Rating,
         items: state.items.sort((a, b) => a.initialRating > b.initialRating ? -1 : 1),
-      }
+      };
     case SortType.Reset:
       return {
         currentType: null,
         items: action.payload,
-      }
+      };
     default:
-      throw new Error('Неверный тип сортировки')
+      throw new Error('Неверный тип сортировки');
   }
 
-}
+};

@@ -1,11 +1,8 @@
 import React, { DetailedHTMLProps, FormHTMLAttributes, useEffect, useState } from 'react';
 import styles from './AddReviewForm.module.scss';
 import cn from "classnames";
-import { Input } from "../Input/Input";
-import { Rating } from "../Rating/Rating";
-import { Textarea } from "../Textarea/Textarea";
-import { Button } from "../Button/Button";
-import CloseIcon from './close.svg'
+import { Input, Rating, Textarea, Button } from '../../components';
+import CloseIcon from './close.svg';
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { API } from "../../helpers/api";
@@ -29,25 +26,25 @@ const initialFormState = {
 
 export const AddReviewForm = ({productId, className, isOpened, ...restProps}: IReview) => {
 
-  const [submitStatus, setSubmitStatus] = useState<{success: boolean, error: boolean}>(initialFormState)
+  const [submitStatus, setSubmitStatus] = useState<{success: boolean, error: boolean}>(initialFormState);
 
   const {control, register, handleSubmit, formState: { errors, isSubmitSuccessful }, reset, clearErrors } = useForm<IReviewForm>();
 
   const onSubmit = async (formData: IReviewForm) => {
     try {
-      const { data } = await axios.post(API.review.createDemo, {...formData, description: formData.message, productId})
-      console.log(data)
-      setSubmitStatus({ success: true, error: false })
+      const { data } = await axios.post(API.review.createDemo, {...formData, description: formData.message, productId});
+      console.log(data);
+      setSubmitStatus({ success: true, error: false });
     } catch(e) {
-      setSubmitStatus({ success: false, error: true })
+      setSubmitStatus({ success: false, error: true });
     }
-  }
+  };
 
   useEffect(() => {
     if ( isSubmitSuccessful && submitStatus.success ) {
       reset();
     }
-  }, [isSubmitSuccessful])
+  }, [isSubmitSuccessful]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={cn(styles.form, className)} {...restProps}>

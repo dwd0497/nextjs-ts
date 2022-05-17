@@ -26,16 +26,16 @@ const ProductPage = ({page, products, topLevelCategory}: IProductPage) => {
         </>
       )}
     </>
-  )
+  );
 };
 
 export default withLayout(ProductPage);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let paths: string[] = []
+  let paths: string[] = [];
   for (let topLevelMenuItem of topLevelMenuItems) {
     const {data: menu} = await axios.post<IMenuItem[]>(API.topPage.find, {firstCategory: topLevelMenuItem.id});
-    paths = paths.concat(menu.flatMap(menuItem => menuItem.pages.map(page => `${topLevelMenuItem.route}/${page.alias}`)))
+    paths = paths.concat(menu.flatMap(menuItem => menuItem.pages.map(page => `${topLevelMenuItem.route}/${page.alias}`)));
   }
 
   return {
@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps<IProductPage> = async ({params}: Get
     };
   }
 
-  const topLevelMenuItem = topLevelMenuItems.find((topLevelMenuItem) => topLevelMenuItem.route === `/${params.category}`)
+  const topLevelMenuItem = topLevelMenuItems.find((topLevelMenuItem) => topLevelMenuItem.route === `/${params.category}`);
 
   if (!topLevelMenuItem) {
     return {
@@ -66,7 +66,7 @@ export const getStaticProps: GetStaticProps<IProductPage> = async ({params}: Get
           middleLevelItem.isOpened = true;
         }
       }
-    )
+    );
     if (menu.length === 0) {
       return {
         notFound: true,

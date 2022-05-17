@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps<ICategoryPage> = async ({params}: Ge
     };
   }
 
-  const topLevelMenuItem = topLevelMenuItems.find((topLevelMenuItem) => topLevelMenuItem.route === `/${params.category}`)
+  const topLevelMenuItem = topLevelMenuItems.find((topLevelMenuItem) => topLevelMenuItem.route === `/${params.category}`);
 
   if (!topLevelMenuItem) {
     return {

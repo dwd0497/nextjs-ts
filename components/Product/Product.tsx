@@ -2,14 +2,9 @@ import React, { DetailedHTMLProps, ForwardedRef, forwardRef, HTMLAttributes, use
 import styles from './Product.module.scss';
 import cn from "classnames";
 import { IProduct } from "../../interfaces/product.interface";
-import { Heading } from "../Heading/Heading";
-import { Rating } from "../Rating/Rating";
-import { Tag } from "../Tag/Tag";
-import { Paragraph } from "../Paragraph/Paragraph";
-import { Button } from "../Button/Button";
+import { Heading, Rating, Tag, Paragraph, Button, Review } from "../../components";
 import { declDepOnNumber, priceAdapter } from "../../helpers/helpers";
-import Image from 'next/image'
-import { Review } from "../Review/Review";
+import Image from 'next/image';
 import { AddReviewForm } from "../AddReviewForm/AddReviewForm";
 import { motion } from "framer-motion";
 
@@ -20,7 +15,7 @@ interface IProductComponent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElem
 export const Product = motion(forwardRef(({ product, className, ...restProps }: IProductComponent, ref:ForwardedRef<HTMLDivElement>) => {
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
 
-  const reviewRef = useRef<HTMLDivElement>(null)
+  const reviewRef = useRef<HTMLDivElement>(null);
 
   const scrollToReview = async () => {
     await setIsReviewOpened(true);
@@ -29,7 +24,7 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
       block: 'start',
     });
     reviewRef.current?.focus();
-  }
+  };
 
   const variants = {
     visible: {
@@ -40,7 +35,7 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
       opacity: 0,
       height: 0,
     }
-  }
+  };
 
   return (
     <div ref={ref} className={styles.product__wrapper}>
@@ -58,7 +53,7 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
           </div>
           <Heading tag="h3" className={styles.product__title}>{product.title}</Heading>
           <div className={styles.product__price}>
-            <span><span className='visually-hidden'>цена</span>{priceAdapter(product.price)}</span>
+            {product.price && <span><span className='visually-hidden'>цена</span>{priceAdapter(product.price)}</span>}
             {product.oldPrice && (
               <span>
                 <span className='visually-hidden'>скидка</span>
@@ -66,7 +61,7 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
               </span>
             )}
           </div>
-          <p className={styles.product__credit}><span className='visually-hidden'>кредит</span>{priceAdapter(product.credit)}<span>/мес</span></p>
+          {product.credit && <p className={styles.product__credit}><span className='visually-hidden'>кредит</span>{priceAdapter(product.credit)}<span>/мес</span></p>}
           <div className={styles.product__rating}>
             <span className='visually-hidden'>{`Рейтинг ${product.reviewAvg}`}</span>
             <Rating rating={product.reviewAvg} />

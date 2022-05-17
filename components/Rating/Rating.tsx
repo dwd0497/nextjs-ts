@@ -18,7 +18,7 @@ export const Rating = forwardRef(({ rating, setRating, isEditable = false, class
 
   useEffect(()=> {
     setRawRating(rating);
-  },[rating])
+  },[rating]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLLIElement>) => {
     if (!isEditable || !setRating) {
@@ -27,7 +27,7 @@ export const Rating = forwardRef(({ rating, setRating, isEditable = false, class
     if (e.code === 'ArrowRight' || e.code ==='ArrowUp') {
       e.preventDefault();
       if (!rating) {
-        setRating(1)
+        setRating(1);
       } else {
         setRating(rating < 5 ? rating + 1 : 5);
       }
@@ -41,7 +41,7 @@ export const Rating = forwardRef(({ rating, setRating, isEditable = false, class
     if (e.code === 'Space') {
       setRating(rating);
     }
-  }
+  };
 
   const computeFocus = (rating:number, i:number):number => {
     if (!isEditable)
@@ -53,7 +53,7 @@ export const Rating = forwardRef(({ rating, setRating, isEditable = false, class
       return tabIndex ?? 0;
     }
     return  -1;
-  }
+  };
 
   return (
     <div

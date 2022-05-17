@@ -1,6 +1,7 @@
 {
   "rules": {
-    "semi": "warn"
+    "semi": "warn",
+    "react/display-name": "off"
   },
   "extends": [
     "next/core-web-vitals",

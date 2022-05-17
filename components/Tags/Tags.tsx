@@ -1,8 +1,7 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
 import styles from './Tags.module.scss';
 import cn from "classnames";
-import { Tag } from "../Tag/Tag";
-import { Heading } from "../Heading/Heading";
+import { Tag, Heading } from "../../components";
 
 
 interface ITags extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>{
@@ -19,5 +18,5 @@ export const Tags = ({ className, tags, ...restProps }: ITags) => {
         ))}
       </ul>
     </div>
-  )
+  );
 };

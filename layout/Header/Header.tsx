@@ -6,6 +6,7 @@ import { Sidebar } from "../Sidebar/Sidebar";
 import { ButtonIcon } from "../../components";
 import { motion } from 'framer-motion';
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface IHeader extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {}
 
@@ -40,7 +41,11 @@ export const Header = ({ className, ...restProps }: IHeader) => {
 
   return (
     <header className={cn( styles.header, className )} {...restProps}>
-      <Logo />
+      <Link href="/">
+        <a>
+          <Logo />
+        </a>
+      </Link>
       <ButtonIcon icon="menu" appearance="white" onClick={() => setIsMenuOpened(true)}/>
       <motion.div
         variants={variants}

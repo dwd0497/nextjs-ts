@@ -1,9 +1,8 @@
 import React, { DetailedHTMLProps, HTMLAttributes, KeyboardEventHandler, useState } from 'react';
 import styles from './Search.module.scss';
 import cn from "classnames";
-import { Input } from "../Input/Input";
-import { Button } from "../Button/Button";
-import MagnifierIcon from "./magnifier.svg"
+import { Input, Button } from "../../components";
+import MagnifierIcon from "./magnifier.svg";
 import { useRouter } from "next/router";
 
 interface ISearch extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -16,14 +15,14 @@ export const Search = ({ className, ...restProps }: ISearch) => {
   const router = useRouter();
 
   const goToSearch = () => {
-    router.push({pathname: '/search', query: value})
-  }
+    router.push({pathname: '/search', query: value});
+  };
 
   const handleKeyDown:KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
-      goToSearch()
+      goToSearch();
     }
-  }
+  };
 
   return (
     <form className={cn(styles.search, className)} {...restProps} role="search">

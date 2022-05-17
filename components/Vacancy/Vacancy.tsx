@@ -2,8 +2,7 @@ import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
 import styles from './Vacancy.module.scss';
 import { IHHData } from "../../interfaces/innerPage.interface";
 import cn from "classnames";
-import { Heading } from "../Heading/Heading";
-import { Tag } from "../Tag/Tag";
+import { Heading, Tag } from "../../components";
 import Star from './star-in-circle.svg';
 import { priceAdapter } from "../../helpers/helpers";
 
@@ -55,5 +54,5 @@ export const Vacancy = ({ className, title, hhData, ...restProps }: IVacancy) =>
         </ul>
       </div>
     </div>
-  )
+  );
 };

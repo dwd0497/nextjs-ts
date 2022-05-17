@@ -3,16 +3,11 @@ import { IInnerPage, TopLevelCategory } from "../../interfaces/innerPage.interfa
 import styles from './ProductContent.module.scss';
 import { IProduct } from "../../interfaces/product.interface";
 import cn from "classnames";
-import { Heading } from "../Heading/Heading";
-import { Tag } from "../Tag/Tag";
-import { Vacancy } from "../Vacancy/Vacancy";
-import { Advantages } from "../Advantages/Advantages";
-import { Tags } from "../Tags/Tags";
+import { Heading, Tag, Vacancy, Advantages, Tags } from "../../components";
 import parse from 'html-react-parser';
 import { Sort } from "../Sort/Sort";
 import { sortReducer, SortType } from "./sortReducer";
 import { Product } from "../Product/Product";
-import { useScrollY } from "../../hooks/useScrollY";
 import { declDepOnNumber } from "../../helpers/helpers";
 
 interface IProductContent extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -25,11 +20,11 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
   const [ sortState, sortDispatch ] = useReducer(sortReducer, {
     items: products,
     currentType: null
-  })
+  });
 
   useEffect(()=> {
-    sortDispatch({type: SortType.Reset, payload: products})
-  }, [products])
+    sortDispatch({type: SortType.Reset, payload: products});
+  }, [products]);
 
   return (
     <div className={cn(styles.product, className)} {...restProps}>
@@ -69,5 +64,5 @@ export const ProductContent = ({page, products, topLevelCategory, className, ...
         <Tags tags={page.tags}/>
       )}
     </div>
-  )
+  );
 };

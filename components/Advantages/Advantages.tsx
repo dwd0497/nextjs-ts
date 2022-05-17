@@ -3,7 +3,7 @@ import styles from './Advantages.module.scss';
 import { IPageAdvantage } from "../../interfaces/innerPage.interface";
 import cn from "classnames";
 import Tick from './tick.svg';
-import { Paragraph } from "../Paragraph/Paragraph";
+import { Paragraph } from "../../components";
 
 interface IAdvantages extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement>{
   advantages: IPageAdvantage[];
@@ -21,5 +21,5 @@ export const Advantages = ({ className, advantages, ...restProps }: IAdvantages)
         </li>
       ))}
     </ul>
-  )
+  );
 };

@@ -50,27 +50,25 @@ export const Menu = () => {
   }
 
   const buildTopLevelMenu = () => (
-    <nav className={styles.menu} role="navigation">
-      <ul className={styles.menu__top}>
-        {topLevelMenuItems.map((topLevelItem) => (
-          <li className={styles.menu__topItem} key={topLevelItem.id} aria-expanded={topLevelCategory === topLevelItem.id}>
-            <Link href={topLevelItem.route}>
-              <a
-                className={cn(
-                  styles.menu__topLink,
-                  {[styles.menu__topLink_active]: topLevelCategory === topLevelItem.id}
-                )}
-                key={topLevelItem.id}
-              >
-                {topLevelItem.icon}
-                <span className={styles.menu__topName}>{topLevelItem.name}</span>
-              </a>
-            </Link>
-            {topLevelCategory === topLevelItem.id && buildMiddleLevelMenu(topLevelItem.route)}
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <ul className={styles.menu__top}>
+      {topLevelMenuItems.map((topLevelItem) => (
+        <li className={styles.menu__topItem} key={topLevelItem.id} aria-expanded={topLevelCategory === topLevelItem.id}>
+          <Link href={topLevelItem.route}>
+            <a
+              className={cn(
+                styles.menu__topLink,
+                {[styles.menu__topLink_active]: topLevelCategory === topLevelItem.id}
+              )}
+              key={topLevelItem.id}
+            >
+              {topLevelItem.icon}
+              <span className={styles.menu__topName}>{topLevelItem.name}</span>
+            </a>
+          </Link>
+          {topLevelCategory === topLevelItem.id && buildMiddleLevelMenu(topLevelItem.route)}
+        </li>
+      ))}
+    </ul>
   );
 
   const buildMiddleLevelMenu = (topLevelRoute: string) => (
@@ -118,6 +116,8 @@ export const Menu = () => {
   );
 
   return (
-    buildTopLevelMenu()
+    <nav className={styles.menu} role="navigation">
+      {buildTopLevelMenu()}
+    </nav>
   );
 };
