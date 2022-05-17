@@ -12,7 +12,6 @@
     gap: 20px;
     font-weight: 500;
     font-size: 18px;
-    line-height: 25px;
 
     &:hover,
     &_active {
@@ -32,14 +31,15 @@
   }
 
   &__middleName {
+    padding: 0 2px;
     display: block;
     cursor: pointer;
     font-weight: 500;
     font-size: 12px;
-    line-height: 16px;
     color: $c_text-light;
     text-transform: uppercase;
     margin-bottom: 12px;
+    outline-offset: -1px;
 
     &:hover {
       color: $c_brand;
@@ -47,11 +47,11 @@
   }
 
   &__loverLink {
+    padding: 0 2px;
     display: block;
     margin: 0 0 10px 10px;
     font-weight: 300;
     font-size: 14px;
-    line-height: 19px;
     color: $c_text-light;
 
     &:hover,

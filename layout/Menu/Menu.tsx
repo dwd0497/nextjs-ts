@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, KeyboardEvent } from 'react';
 import { AppContext } from "../../contexts/appContext";
 import { IPageItem } from "../../interfaces/menuItem.interface";
 import styles from "./menu.module.scss";
@@ -42,6 +42,13 @@ export const Menu = () => {
     }));
   };
 
+  const openSecondLevelByKey = (key: KeyboardEvent<HTMLSpanElement>, secondCategory: string) => {
+    if (key.code === 'Space' || key.code === 'Enter') {
+      key.preventDefault();
+      toggleMiddleLevelMenu(secondCategory);
+    }
+  }
+
   const buildTopLevelMenu = () => (
     <nav className={styles.menu}>
       <ul className={styles.menu__top}>
@@ -71,14 +78,21 @@ export const Menu = () => {
       {menu.map((middleLevelItem) => {
         return (
           <li className={styles.menu__middleItem} key={middleLevelItem._id.secondCategory}>
-            <span className={styles.menu__middleName} onClick={() => toggleMiddleLevelMenu(middleLevelItem._id.secondCategory)}>{middleLevelItem._id.secondCategory}</span>
+            <span
+              className={styles.menu__middleName}
+              onClick={() => toggleMiddleLevelMenu(middleLevelItem._id.secondCategory)}
+              tabIndex={0}
+              onKeyDown={(key: KeyboardEvent<HTMLSpanElement>) => openSecondLevelByKey(key, middleLevelItem._id.secondCategory)}
+            >
+              {middleLevelItem._id.secondCategory}
+            </span>
             <motion.div
               layout
               variants={variants}
               initial={middleLevelItem.isOpened ? 'visible' : 'hidden'}
               animate={middleLevelItem.isOpened ? 'visible' : 'hidden'}
             >
-              {buildLoverLevelMenu(middleLevelItem.pages, topLevelRoute)}
+              {buildLoverLevelMenu(middleLevelItem.pages, topLevelRoute, !!middleLevelItem.isOpened)}
             </motion.div>
           </li>
         );
@@ -86,11 +100,11 @@ export const Menu = () => {
     </ul>
   );
 
-  const buildLoverLevelMenu = (pages: IPageItem[], topLevelRoute: string) => (
+  const buildLoverLevelMenu = (pages: IPageItem[], topLevelRoute: string, isOpened: boolean) => (
     pages.map((page) => (
       <motion.div key={page.title} variants={variantsChildren}>
         <Link href={`${topLevelRoute}/${page.alias}`}>
-          <a className={cn(
+          <a tabIndex={isOpened ? 0 : -1} className={cn(
             styles.menu__loverLink,
             {[styles.menu__loverLink_active]: page.alias === router.asPath.split('/')[2]}
           )}
